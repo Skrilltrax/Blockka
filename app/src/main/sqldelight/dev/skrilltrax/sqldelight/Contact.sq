@@ -1,0 +1,14 @@
+CREATE TABLE Contact (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+number TEXT NOT NULL,
+name TEXT,
+call_count INTEGER NOT NULL DEFAULT 0
+);
+
+selectAll:
+SELECT * FROM Contact;
+
+isBlocked:
+SELECT *
+FROM Contact
+WHERE Contact.number = ?;
