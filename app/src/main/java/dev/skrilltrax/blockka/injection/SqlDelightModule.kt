@@ -25,7 +25,7 @@ object SqlDelightModule {
 
     @Provides
     @Singleton
-    fun provideContactsDatabase(driver: AndroidSqliteDriver): BlockkaDatabase {
+    fun provideContactsDatabase(driver: SqlDriver): BlockkaDatabase {
         return BlockkaDatabase(driver)
     }
 
