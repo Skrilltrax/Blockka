@@ -77,11 +77,9 @@ class MainActivity : AppCompatActivity() {
   }
 
   private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::inflate)
-
+  private val viewModel: ContactViewModel by viewModels()
   private lateinit var navHostFragment: NavHostFragment
   private lateinit var navController: NavController
-
-  private val viewModel: ContactViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

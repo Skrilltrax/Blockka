@@ -36,7 +36,12 @@ class ContactListAdapter(private var contactList: List<Contact>, val onClick: (C
     fun bind(contact: Contact) {
       with(binding) {
         titleText.text = contact.number
-        subtitleText.text = contact.name
+        if (contact.name.isNullOrEmpty()) {
+          subtitleText.visibility = View.GONE
+        } else {
+          subtitleText.visibility = View.VISIBLE
+          subtitleText.text = contact.name
+        }
       }
 
       itemView.setOnClickListener { onClick(contact) }

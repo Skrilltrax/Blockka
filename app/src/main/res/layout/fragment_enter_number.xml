@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/normal_margin"
-        android:text="Enter number"
+        android:text="Enter Contact Details"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/til_number"
@@ -22,7 +22,7 @@
         android:id="@+id/til_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
         android:hint="Enter Number"
@@ -41,6 +41,29 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:hint="Enter Name"
+        app:startIconDrawable="@drawable/ic_edit_24"
+        app:startIconTint="@color/secondary_color"
+        app:layout_constraintTop_toBottomOf="@id/til_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/CustomTextInputLayoutStyle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/done"
         android:layout_width="wrap_content"
@@ -49,8 +72,8 @@
         android:layout_marginBottom="@dimen/normal_margin"
         android:backgroundTint="@color/secondary_color"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/til_number"
-        app:layout_constraintEnd_toEndOf="@id/til_number"
+        app:layout_constraintTop_toBottomOf="@id/til_name"
+        app:layout_constraintEnd_toEndOf="@id/til_name"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Done" />
 

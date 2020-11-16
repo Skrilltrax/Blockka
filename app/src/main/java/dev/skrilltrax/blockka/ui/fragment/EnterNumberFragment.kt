@@ -11,12 +11,10 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 import dev.skrilltrax.blockka.R
+import dev.skrilltrax.blockka.databinding.FragmentEnterNumberBinding
 import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 
 @AndroidEntryPoint
@@ -35,9 +33,7 @@ class EnterNumberFragment : BottomSheetDialogFragment() {
   }
 
   private val viewmodel: ContactViewModel by activityViewModels()
-  private lateinit var numberEditTextView: TextInputEditText
-  private lateinit var numberTextInputLayout: TextInputLayout
-  private lateinit var doneButton: MaterialButton
+  private lateinit var binding: FragmentEnterNumberBinding
 
   override fun getTheme(): Int {
     return R.style.BottomSheetDialogTheme
@@ -48,16 +44,15 @@ class EnterNumberFragment : BottomSheetDialogFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.fragment_enter_number, container, false)
+    binding = FragmentEnterNumberBinding.inflate(layoutInflater)
+    return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
     observeViewTree(view)
-    findViews(view)
     setClickListeners()
-
   }
 
   override fun dismiss() {
@@ -81,25 +76,26 @@ class EnterNumberFragment : BottomSheetDialogFragment() {
     })
   }
 
-  private fun findViews(view: View) {
-    numberEditTextView = view.findViewById(R.id.tiet_number)
-    numberTextInputLayout = view.findViewById(R.id.til_number)
-    doneButton = view.findViewById(R.id.done)
-  }
-
   private fun setClickListeners() {
-    doneButton.setOnClickListener {
-      val text = numberEditTextView.text
-      if (text.isNullOrEmpty() || text.length < 10) {
-        numberTextInputLayout.error = "Number should have at least 10 digits"
-        return@setOnClickListener
+    with(binding) {
+      done.setOnClickListener {
+        val number = tietNumber.text
+        if (number.isNullOrEmpty() || number.length < 10) {
+          tilNumber.error = "Number should have at least 10 digits"
+          return@setOnClickListener
+        }
+
+        val name = tietName.text
+        if (name.isNullOrEmpty()) {
+          viewmodel.addContact(number.toString())
+        } else {
+          viewmodel.addContact(number.toString(), name.toString())
+        }
+        dismiss()
       }
 
-      viewmodel.addContact(text.toString())
-      dismiss()
+      tietNumber.doOnTextChanged { _, _, _, _ -> tilNumber.error = null }
     }
-
-    numberEditTextView.doOnTextChanged { _, _, _, _ -> numberTextInputLayout.error = null }
   }
 
   companion object {
