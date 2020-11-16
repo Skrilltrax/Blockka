@@ -1,0 +1,30 @@
+CREATE TABLE RecentContact (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+number TEXT NOT NULL,
+name TEXT,
+timestamp TEXT NOT NULL DEFAULT 0
+);
+
+selectAll:
+SELECT *
+FROM RecentContact;
+
+selectByNumber:
+SELECT *
+FROM RecentContact
+WHERE number = ?;
+
+selectById:
+SELECT *
+FROM RecentContact
+WHERE id = ?;
+
+insertContact:
+INSERT OR REPLACE
+INTO RecentContact
+VALUES ?;
+
+insertContactByNumber:
+INSERT OR REPLACE
+INTO RecentContact(number, timestamp)
+VALUES (?, ?);

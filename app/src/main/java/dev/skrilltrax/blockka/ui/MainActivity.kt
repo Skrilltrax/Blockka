@@ -12,15 +12,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.activity.viewModels
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import dev.skrilltrax.blockka.R
+import dev.skrilltrax.blockka.data.local.LocalContact
 import dev.skrilltrax.blockka.databinding.ActivityMainBinding
 import dev.skrilltrax.blockka.ui.fragment.AddContactFragment
 import dev.skrilltrax.blockka.ui.fragment.EnterNumberFragment
@@ -66,12 +64,15 @@ class MainActivity : AppCompatActivity() {
           null
         )
 
+        val contactList = arrayListOf<LocalContact>()
+
         if (phones != null && phones.moveToFirst()) {
           do {
             val number = phones.getString(phones.getColumnIndex(Phone.NUMBER))
-
-            viewModel.addContact(number, name)
+            contactList.add(LocalContact(name, number))
           } while (phones.moveToNext())
+
+          viewModel.addContacts(contactList)
         }
       }
     } catch (e: Exception) {
@@ -89,7 +90,8 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
     setSupportActionBar(binding.bottomAppBar)
 
-    navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    navHostFragment =
+      supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
     navController = navHostFragment.navController
 
     setupBottomSheet()
@@ -115,7 +117,12 @@ class MainActivity : AppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       android.R.id.home -> {
-        val bottomNavDrawerFragment = NavigationSheetFragment(ListType.ALL_CONTACTS)
+        val bottomNavDrawerFragment = when (navController.currentDestination?.id) {
+          R.id.homeFragment -> NavigationSheetFragment(ListType.ALL_CONTACTS)
+          R.id.recentFragment -> NavigationSheetFragment(ListType.RECENT_CONTACTS)
+          else -> throw IllegalStateException("fragment id should be in (R.id.homeFragment, R.id.recentFragment)")
+        }
+
         bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
       }
     }
@@ -129,10 +136,28 @@ class MainActivity : AppCompatActivity() {
     ) { _, bundle ->
       when (bundle.getString(NavigationSheetFragment.REQUEST_LIST)) {
         NavigationSheetFragment.REQUEST_ALL_CONTACTS -> {
-          Toast.makeText(this, "all", Toast.LENGTH_LONG).show()
+          when (navController.currentDestination?.id) {
+            R.id.homeFragment -> {
+              // TODO: Do nothing
+            }
+            R.id.recentFragment -> {
+              // We only have 2 fragments so we are pretty sure it is a valid operation
+              navController.popBackStack()
+              binding.fab.show()
+            }
+          }
         }
+
         NavigationSheetFragment.REQUEST_RECENT_CONTACTS -> {
-          Toast.makeText(this, "recent", Toast.LENGTH_LONG).show()
+          when (navController.currentDestination?.id) {
+            R.id.homeFragment -> {
+              navController.navigate(R.id.action_homeFragment_to_recentFragment)
+              binding.fab.hide()
+            }
+            R.id.recentFragment -> {
+              // TODO: Do nothing
+            }
+          }
         }
       }
     }

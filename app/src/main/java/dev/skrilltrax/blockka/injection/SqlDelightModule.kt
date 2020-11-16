@@ -11,6 +11,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.skrilltrax.blockka.model.BlockkaDatabase
 import dev.skrilltrax.blockka.model.BlockkaDatabase.Companion.Schema
 import dev.skrilltrax.sqldelight.ContactQueries
+import dev.skrilltrax.sqldelight.RecentContactQueries
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -33,5 +34,11 @@ object SqlDelightModule {
     @Singleton
     fun provideContactQueries(database: BlockkaDatabase): ContactQueries {
         return database.contactQueries
+    }
+
+    @Provides
+    @Singleton
+    fun provideRecentContactQueries(database: BlockkaDatabase): RecentContactQueries {
+        return database.recentContactQueries
     }
 }
