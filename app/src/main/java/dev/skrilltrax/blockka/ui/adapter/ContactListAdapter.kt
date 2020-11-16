@@ -80,12 +80,13 @@ class ContactListAdapter(private var contactList: List<Contact>) :
 
     fun bind(contact: Contact, isSelected: Boolean) {
       with(binding) {
-        titleText.text = contact.number
         if (contact.name.isNullOrEmpty()) {
           subtitleText.visibility = View.GONE
+          titleText.text = contact.number
         } else {
           subtitleText.visibility = View.VISIBLE
-          subtitleText.text = contact.name
+          titleText.text = contact.name
+          subtitleText.text = contact.number
         }
       }
 

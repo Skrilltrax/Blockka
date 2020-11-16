@@ -28,7 +28,6 @@ import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import dev.skrilltrax.blockka.utils.viewBinding
 import timber.log.Timber
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -89,7 +88,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(binding.root)
-    setSupportActionBar(binding.toolbar)
+    setSupportActionBar(binding.bottomAppBar)
 
     navHostFragment =
       supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
