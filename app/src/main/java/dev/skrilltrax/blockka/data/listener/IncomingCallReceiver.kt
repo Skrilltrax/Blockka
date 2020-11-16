@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,9 +44,11 @@ class IncomingCallReceiver : BroadcastReceiver() {
 
         if (!isIncomingCall(extraState)) return
 
+        val normalizedNumber = PhoneNumberUtils.normalizeNumber(number)
+
         coroutinescope.launch {
-            if (/*shouldRejectCall(number)*/ true) {
-                rejectCall(context!!, number)
+            if (shouldRejectCall(normalizedNumber)) {
+                rejectCall(context!!, normalizedNumber)
             }
         }
 
