@@ -1,4 +1,4 @@
-package dev.skrilltrax.blockka.ui
+package dev.skrilltrax.blockka.ui.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import dev.skrilltrax.blockka.R
 import dev.skrilltrax.blockka.databinding.FragmentHomeBinding
+import dev.skrilltrax.blockka.ui.MainActivity
 import dev.skrilltrax.blockka.ui.adapter.ContactListAdapter
 import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import kotlinx.coroutines.flow.collect

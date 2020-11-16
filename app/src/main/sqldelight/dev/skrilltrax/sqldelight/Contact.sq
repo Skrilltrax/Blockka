@@ -20,7 +20,7 @@ INTO Contact
 VALUES ?;
 
 insertContactByNumber:
-INSERT
+INSERT OR REPLACE
 INTO Contact(number)
 VALUES (?);
 
@@ -30,6 +30,11 @@ INTO Contact(number, name)
 VALUES (?, ?);
 
 incrementCallCount:
+UPDATE Contact
+SET call_count = call_count + 1
+WHERE id = ?;
+
+incrementCallCountByNumber:
 UPDATE Contact
 SET call_count = call_count + 1
 WHERE id = ?;

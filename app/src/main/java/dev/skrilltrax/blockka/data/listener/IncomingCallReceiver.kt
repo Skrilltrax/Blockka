@@ -7,21 +7,22 @@ import android.os.Build
 import android.os.Bundle
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
-import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import dev.skrilltrax.blockka.data.manager.IncomingCallManager
-import dev.skrilltrax.blockka.data.repo.BlockkaRepository
+import dev.skrilltrax.blockka.data.repo.ContactRepository
+import dev.skrilltrax.blockka.data.repo.RecentRepository
 import kotlinx.coroutines.*
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class IncomingCallReceiver : BroadcastReceiver() {
-    @Inject lateinit var repository: BlockkaRepository
+    @Inject lateinit var contactRepository: ContactRepository
+    @Inject lateinit var recentRepository: RecentRepository
     @Inject lateinit var incomingCallManager: IncomingCallManager
 
     private val job = Job()
-    private val coroutinescope = CoroutineScope(job + Dispatchers.IO)
+    private val coroutineScope = CoroutineScope(job + Dispatchers.IO)
     private var previousState = TelephonyManager.CALL_STATE_IDLE
 
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -46,9 +47,9 @@ class IncomingCallReceiver : BroadcastReceiver() {
 
         val normalizedNumber = PhoneNumberUtils.normalizeNumber(number)
 
-        coroutinescope.launch {
+        coroutineScope.launch {
             if (shouldRejectCall(normalizedNumber)) {
-                rejectCall(context!!, normalizedNumber)
+                rejectCall(normalizedNumber)
             }
         }
 
@@ -97,14 +98,15 @@ class IncomingCallReceiver : BroadcastReceiver() {
                 previousState == TelephonyManager.CALL_STATE_IDLE
     }
 
-    private suspend fun rejectCall(context: Context, number: String) {
+    private suspend fun rejectCall(number: String) {
         withContext(Dispatchers.Main) {
-            Toast.makeText(context, number, Toast.LENGTH_LONG).show()
+            contactRepository.incrementCallCount(number)
+            recentRepository.addRecent(number)
             incomingCallManager.rejectCall(number)
         }
     }
 
     private suspend fun shouldRejectCall(number: String): Boolean {
-        return repository.isContactBlocked(number)
+        return contactRepository.isContactBlocked(number)
     }
 }
