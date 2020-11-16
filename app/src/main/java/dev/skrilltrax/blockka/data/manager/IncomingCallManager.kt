@@ -1,23 +1,20 @@
 package dev.skrilltrax.blockka.data.manager
 
-import dev.skrilltrax.sqldelight.Contact
-import dev.skrilltrax.sqldelight.ContactQueries
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
+import android.content.Context
+import android.os.Build
 
-class IncomingCallManager @Inject constructor(private val contactQueries: ContactQueries) {
+interface IncomingCallManager {
 
-    fun isBlocked(number: String) = flow {
-        withContext(Dispatchers.IO) {
-            val result = contactQueries.isBlocked(number).executeAsOneOrNull()
-            if (result is Contact) {
-                emit(true)
-            } else {
-                emit(false)
+    fun rejectCall(number: String): Boolean
+
+    companion object {
+
+        fun getInstance(context: Context): IncomingCallManager {
+            return when {
+//                Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> IncomingCallManager29Impl(context)
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.P -> IncomingCallManager28Impl(context)
+                else -> IncomingCallManager21Impl(context)
             }
         }
     }
-
 }

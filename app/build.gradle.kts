@@ -52,12 +52,23 @@ dependencies {
     implementation(Dependencies.AndroidX.activityKtx)
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.coreKtx)
+    implementation(Dependencies.AndroidX.fragmentKtx)
     implementation(Dependencies.AndroidX.material)
+
+    implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
+    implementation(Dependencies.AndroidX.Lifecycle.process)
+    implementation(Dependencies.AndroidX.Lifecycle.runtimeKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.viewmodelKtx)
+
+    implementation(Dependencies.AndroidX.Navigation.fragmentKtx)
+    implementation(Dependencies.AndroidX.Navigation.uiKtx)
 
     implementation(Dependencies.AndroidX.Hilt.dagger)
     implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewmodel)
 
+    implementation(Dependencies.ThirdParty.timber)
     implementation(Dependencies.ThirdParty.SQLDelight.androidDriver)
+    implementation(Dependencies.ThirdParty.SQLDelight.coroutinesExtension)
 
     testImplementation(Dependencies.Testing.junit)
     testImplementation(Dependencies.ThirdParty.SQLDelight.jvmDriver)

@@ -48,6 +48,7 @@ object Dependencies {
         const val browser = "androidx.browser:browser:1.3.0-rc01"
         const val coreKtx = "androidx.core:core-ktx:1.5.0-alpha05"
         const val coreLibraryDesugaring = "com.android.tools:desugar_jdk_libs:1.0.10"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-beta01"
         const val material = "com.google.android.material:material:1.3.0-alpha03"
 
         object Compose {
@@ -74,8 +75,17 @@ object Dependencies {
         object Lifecycle {
 
             private const val version = "2.3.0-beta01"
+            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
             const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
+            const val process = "androidx.lifecycle:lifecycle-process:$version"
             const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+        }
+
+        object Navigation {
+
+            private const val version = "2.3.1"
+            const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
+            const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
         }
     }
 
@@ -83,12 +93,14 @@ object Dependencies {
 
         const val accompanist = "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
         const val customtabs = "saschpe.android:customtabs:3.0.2"
+        const val timber = "com.jakewharton.timber:timber:4.7.1"
 
         object SQLDelight {
 
             private const val version = "1.4.4"
-            const val jvmDriver = "com.squareup.sqldelight:sqlite-driver:$version"
             const val androidDriver = "com.squareup.sqldelight:android-driver:$version"
+            const val coroutinesExtension = "com.squareup.sqldelight:coroutines-extensions:$version"
+            const val jvmDriver = "com.squareup.sqldelight:sqlite-driver:$version"
         }
     }
 

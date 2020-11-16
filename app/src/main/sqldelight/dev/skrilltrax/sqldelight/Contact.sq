@@ -5,8 +5,47 @@ name TEXT,
 call_count INTEGER NOT NULL DEFAULT 0
 );
 
-selectAll:
-SELECT * FROM Contact;
+selectAllContacts:
+SELECT *
+FROM Contact;
+
+selectContact:
+SELECT *
+FROM Contact
+WHERE id = ?;
+
+insertOrReplaceContact:
+INSERT OR REPLACE
+INTO Contact
+VALUES ?;
+
+insertContactByNumber:
+INSERT
+INTO Contact(number)
+VALUES (?);
+
+insertContactByNumberAndName:
+INSERT OR REPLACE
+INTO Contact(number, name)
+VALUES (?, ?);
+
+incrementCallCount:
+UPDATE Contact
+SET call_count = call_count + 1
+WHERE id = ?;
+
+deleteContact:
+DELETE
+FROM Contact
+WHERE id = ?;
+
+deleteAllContacts:
+DELETE
+FROM Contact;
+
+selectCount:
+SELECT COUNT(*)
+FROM Contact;
 
 isBlocked:
 SELECT *
