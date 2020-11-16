@@ -30,4 +30,12 @@ class ContactViewModel @ViewModelInject constructor(private val repository: Bloc
       repository.addContact(normalizedNumber, name)
     }
   }
+
+  fun deleteContacts(selectedContacts: List<Contact>) {
+    viewModelScope.launch {
+      selectedContacts.forEach {
+        repository.removeContact(it)
+      }
+    }
+  }
 }
