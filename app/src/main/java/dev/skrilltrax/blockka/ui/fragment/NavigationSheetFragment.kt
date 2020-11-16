@@ -80,11 +80,11 @@ class NavigationSheetFragment(private val listType: ListType) : BottomSheetDialo
   }
 
   private fun onAllContacts() {
-    setFragmentResult(REQUEST_LIST_TYPE, bundleOf(REQUEST_LIST to REQUEST_ALL_CONTACTS))
+    setFragmentResult(REQUEST_LIST_TYPE, bundleOf(RESULT_LIST to RESULT_ALL_CONTACTS))
   }
 
   private fun onRecentContacts() {
-    setFragmentResult(REQUEST_LIST_TYPE, bundleOf(REQUEST_LIST to REQUEST_RECENT_CONTACTS))
+    setFragmentResult(REQUEST_LIST_TYPE, bundleOf(RESULT_LIST to RESULT_RECENT_CONTACTS))
   }
 
   override fun dismiss() {
@@ -94,8 +94,8 @@ class NavigationSheetFragment(private val listType: ListType) : BottomSheetDialo
 
   companion object {
     const val REQUEST_LIST_TYPE = "request_list_type"
-    const val REQUEST_LIST = "request_list"
-    const val REQUEST_ALL_CONTACTS = "request_all_contacts"
-    const val REQUEST_RECENT_CONTACTS = "request_recent_contacts"
+    const val RESULT_LIST = "result_list"
+    const val RESULT_ALL_CONTACTS = "result_all_contacts"
+    const val RESULT_RECENT_CONTACTS = "result_recent_contacts"
   }
 }

@@ -75,11 +75,11 @@ class AddContactFragment : BottomSheetDialogFragment() {
   }
 
   private fun onAddManual() {
-    setFragmentResult(REQUEST_ADD_CONTACTS, bundleOf(REQUEST_ADD to REQUEST_ADD_MANUAL))
+    setFragmentResult(RESULT_ADD_CONTACTS, bundleOf(RESULT_ADD to RESULT_ADD_MANUAL))
   }
 
   private fun onAddContacts() {
-    setFragmentResult(REQUEST_ADD_CONTACTS, bundleOf(REQUEST_ADD to REQUEST_ADD_CONTACTS))
+    setFragmentResult(RESULT_ADD_CONTACTS, bundleOf(RESULT_ADD to RESULT_ADD_CONTACTS))
   }
 
   override fun dismiss() {
@@ -89,8 +89,8 @@ class AddContactFragment : BottomSheetDialogFragment() {
 
   companion object {
     const val REQUEST_ADD_TYPE = "request_add_type"
-    const val REQUEST_ADD = "request_add"
-    const val REQUEST_ADD_MANUAL = "request_add_manual"
-    const val REQUEST_ADD_CONTACTS = "request_add_contacts"
+    const val RESULT_ADD = "result_add"
+    const val RESULT_ADD_MANUAL = "result_add_manual"
+    const val RESULT_ADD_CONTACTS = "result_add_contacts"
   }
 }

@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(binding.root)
-    setSupportActionBar(binding.bottomAppBar)
+    setSupportActionBar(binding.toolbar)
 
     navHostFragment =
       supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -97,6 +98,7 @@ class MainActivity : AppCompatActivity() {
     setupBottomSheet()
 
     with(binding) {
+      binding.toolbar.title = ListType.ALL_CONTACTS.text
       fab.setOnClickListener {
         val addContactFragment = AddContactFragment()
         addContactFragment.show(supportFragmentManager, addContactFragment.tag)
@@ -129,58 +131,87 @@ class MainActivity : AppCompatActivity() {
     return true
   }
 
+  fun getToolbar(): Toolbar {
+    return binding.toolbar
+  }
+
   private fun setupBottomSheet() {
     supportFragmentManager.setFragmentResultListener(
       NavigationSheetFragment.REQUEST_LIST_TYPE,
       this
     ) { _, bundle ->
-      when (bundle.getString(NavigationSheetFragment.REQUEST_LIST)) {
-        NavigationSheetFragment.REQUEST_ALL_CONTACTS -> {
-          when (navController.currentDestination?.id) {
-            R.id.homeFragment -> {
-              // TODO: Do nothing
-            }
-            R.id.recentFragment -> {
-              // We only have 2 fragments so we are pretty sure it is a valid operation
-              navController.popBackStack()
-              binding.fab.show()
-            }
-          }
-        }
-
-        NavigationSheetFragment.REQUEST_RECENT_CONTACTS -> {
-          when (navController.currentDestination?.id) {
-            R.id.homeFragment -> {
-              navController.navigate(R.id.action_homeFragment_to_recentFragment)
-              binding.fab.hide()
-            }
-            R.id.recentFragment -> {
-              // TODO: Do nothing
-            }
-          }
-        }
-      }
+      // If result is null we don't have to do anything
+      val result =
+        bundle.getString(NavigationSheetFragment.RESULT_LIST) ?: return@setFragmentResultListener
+      handleNavigation(result)
     }
 
     supportFragmentManager.setFragmentResultListener(
-      AddContactFragment.REQUEST_ADD_CONTACTS,
+      AddContactFragment.RESULT_ADD_CONTACTS,
       this
     ) { _, bundle ->
-      when (bundle.getString(AddContactFragment.REQUEST_ADD)) {
-        AddContactFragment.REQUEST_ADD_MANUAL -> {
-          val enterNumberFragment = EnterNumberFragment()
-          enterNumberFragment.show(supportFragmentManager, enterNumberFragment.tag)
-        }
-        AddContactFragment.REQUEST_ADD_CONTACTS -> {
-          contactLauncher.launch()
-        }
+      // If result is null we don't have to do anything
+      val result =
+        bundle.getString(AddContactFragment.RESULT_ADD) ?: return@setFragmentResultListener
+      handleContactAddition(result)
+    }
+  }
+
+  private fun handleNavigation(result: String) {
+    when (result) {
+      NavigationSheetFragment.RESULT_ALL_CONTACTS -> handleAllContactsNavigation()
+      NavigationSheetFragment.RESULT_RECENT_CONTACTS -> handleRecentContactsNavigation()
+    }
+  }
+
+  private fun handleAllContactsNavigation() {
+    binding.toolbar.title = ListType.ALL_CONTACTS.text
+    when (navController.currentDestination?.id) {
+      R.id.homeFragment -> {
+        // We are already at a valid fragment, no need to do anything
+      }
+
+      R.id.recentFragment -> {
+        // We only have 2 fragments so we are pretty sure it is a valid operation
+        navController.popBackStack()
+        binding.fab.show()
+      }
+    }
+  }
+
+  private fun handleRecentContactsNavigation() {
+    binding.toolbar.title = ListType.RECENT_CONTACTS.text
+    when (navController.currentDestination?.id) {
+      R.id.homeFragment -> {
+        navController.navigate(R.id.action_homeFragment_to_recentFragment)
+        binding.fab.hide()
+      }
+
+      R.id.recentFragment -> {
+        // We are already at a valid fragment, no need to do anything
+      }
+    }
+  }
+
+  private fun handleContactAddition(result: String) {
+    when (result) {
+      AddContactFragment.RESULT_ADD_MANUAL -> {
+        val enterNumberFragment = EnterNumberFragment()
+        enterNumberFragment.show(supportFragmentManager, enterNumberFragment.tag)
+      }
+      AddContactFragment.RESULT_ADD_CONTACTS -> {
+        contactLauncher.launch()
       }
     }
   }
 
   private fun requestPermissions() {
     val permissions =
-      arrayListOf(Manifest.permission.READ_CALL_LOG, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CONTACTS)
+      arrayListOf(
+        Manifest.permission.READ_CALL_LOG,
+        Manifest.permission.READ_PHONE_STATE,
+        Manifest.permission.READ_CONTACTS
+      )
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       permissions.add(Manifest.permission.ANSWER_PHONE_CALLS)
