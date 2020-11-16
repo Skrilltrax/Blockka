@@ -54,6 +54,7 @@ dependencies {
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.fragmentKtx)
     implementation(Dependencies.AndroidX.material)
+    implementation(Dependencies.AndroidX.recyclerviewSelection)
 
     implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
     implementation(Dependencies.AndroidX.Lifecycle.process)

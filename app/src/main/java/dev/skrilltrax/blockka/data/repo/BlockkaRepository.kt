@@ -40,12 +40,17 @@ class BlockkaRepository @Inject constructor(private val contactQueries: ContactQ
     }
   }
 
-  suspend fun isContactBlockedStrict(number: String): Boolean = withContext(Dispatchers.IO) {
-    val contact = contactQueries.isBlocked(number).executeAsOneOrNull()
-    return@withContext contact != null
+  suspend fun removeContact(contact: Contact) = withContext(Dispatchers.IO) {
+    contactQueries.deleteContact(contact.id)
   }
 
-  suspend fun isContactBlockedLoose(number: String) = withContext(Dispatchers.IO) {
+  private suspend fun isContactBlockedStrict(number: String): Boolean =
+    withContext(Dispatchers.IO) {
+      val contact = contactQueries.isBlocked(number).executeAsOneOrNull()
+      return@withContext contact != null
+    }
+
+  private suspend fun isContactBlockedLoose(number: String) = withContext(Dispatchers.IO) {
     val allContacts = contactQueries.selectAllContacts().executeAsList()
 
     allContacts.forEach {

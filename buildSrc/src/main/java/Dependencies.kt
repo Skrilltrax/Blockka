@@ -50,6 +50,7 @@ object Dependencies {
         const val coreLibraryDesugaring = "com.android.tools:desugar_jdk_libs:1.0.10"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-beta01"
         const val material = "com.google.android.material:material:1.3.0-alpha03"
+        const val recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
 
         object Compose {
 
