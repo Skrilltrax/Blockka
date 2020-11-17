@@ -2,4 +2,10 @@
     <string name="app_name">Blockka</string>
     <string name="blocked_call_from">Blocked a called from %s</string>
     <string name="total_calls_blocked_from_number">Total calls blocked from this number: %s</string>
+    <string name="add_manually">Add Manually</string>
+    <string name="add_from_contacts">Add From Contacts</string>
+    <string name="enter_number">Enter Number</string>
+    <string name="enter_contact_details">Enter Contact Details</string>
+    <string name="all_contacts">All Contacts</string>
+    <string name="recent_contacts">Recent Contacts</string>
 </resources>

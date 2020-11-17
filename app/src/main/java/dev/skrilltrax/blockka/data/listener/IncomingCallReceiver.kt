@@ -57,8 +57,12 @@ class IncomingCallReceiver : BroadcastReceiver() {
         coroutineScope.launch {
             val contact = shouldRejectCall(normalizedNumber)
             if (contact is Contact) {
-                rejectCall(contact)
-                createNotification(context, contact)
+                try {
+                    rejectCall(contact)
+                    createNotification(context, contact)
+                } catch (e: Exception) {
+                    Timber.e(e)
+                }
             }
         }
 
