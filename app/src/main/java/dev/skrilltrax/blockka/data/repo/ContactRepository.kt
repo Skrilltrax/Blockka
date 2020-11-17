@@ -72,7 +72,15 @@ class ContactRepository @Inject constructor(private val contactQueries: ContactQ
   }
 
   suspend fun getContactByNumber(number: String) = withContext(Dispatchers.IO) {
-    return@withContext contactQueries.selectContactByNumber(number).executeAsOneOrNull()
+    val allContacts = contactQueries.selectAllContacts().executeAsList()
+
+    allContacts.forEach {
+      if (PhoneNumberUtils.compare(it.number, number)) {
+        return@withContext it
+      }
+    }
+
+    return@withContext null
   }
 
   suspend fun incrementCallCount(contact: Contact) = withContext(Dispatchers.IO) {

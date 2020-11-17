@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Blockka</string>
+    <string name="blocked_call_from">Blocked a called from %s</string>
+    <string name="total_calls_blocked_from_number">Total calls blocked from this number: %s</string>
 </resources>
