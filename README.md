@@ -11,6 +11,7 @@ A call blocking app for android which I made as an assignment for pratilipi. The
 - [ ] Show calls blocked for a particular contact
 
 <h3> Methods used for blocking call </h3>  
+
 - [x] TelephonyManager reflection method (Android L to Android N)
 - [x] TelecomManager (Android P+)
 - [ ] CallScreeningService (Android Q+, Planned) 
