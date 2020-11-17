@@ -43,7 +43,11 @@ class RecentContactListAdapter(private var contactList: List<RecentContact>) :
 
     fun bind(contact: RecentContact) {
       with(binding) {
-        titleText.text = contact.number
+        if (!contact.name.isNullOrEmpty()) {
+          titleText.text = "${contact.name} (${contact.number})"
+        } else {
+          titleText.text = contact.number
+        }
         if (contact.timestamp.isEmpty()) {
           subtitleText.visibility = View.GONE
         } else {

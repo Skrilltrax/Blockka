@@ -21,6 +21,14 @@ class RecentRepository @Inject constructor(val recentContactQueries: RecentConta
     recentContactQueries.insertContactByNumber(number, currentTimeStamp)
   }
 
+  suspend fun addRecent(number: String, name: String) = withContext(Dispatchers.IO) {
+    val currDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+    val currTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+
+    val currentTimeStamp = "$currDate ($currTime)"
+    recentContactQueries.insertContactByNumberName(number, name, currentTimeStamp)
+  }
+
   fun getAllRecentContacts(): Flow<List<RecentContact>> {
     return recentContactQueries.selectAll().asFlow().mapToList()
   }

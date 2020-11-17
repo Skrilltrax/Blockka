@@ -11,7 +11,8 @@ interface IncomingCallManager {
 
         fun getInstance(context: Context): IncomingCallManager {
             return when {
-//                Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> IncomingCallManager29Impl(context)
+                // When we use call screening api, we can create a api29 impl
+                // Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> IncomingCallManager29Impl(context)
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.P -> IncomingCallManager28Impl(context)
                 else -> IncomingCallManager21Impl(context)
             }

@@ -14,6 +14,11 @@ SELECT *
 FROM Contact
 WHERE id = ?;
 
+selectContactByNumber:
+SELECT *
+FROM Contact
+WHERE number = ?;
+
 insertOrReplaceContact:
 INSERT OR REPLACE
 INTO Contact

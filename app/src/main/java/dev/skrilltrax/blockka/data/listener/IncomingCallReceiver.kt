@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.skrilltrax.blockka.data.manager.IncomingCallManager
 import dev.skrilltrax.blockka.data.repo.ContactRepository
 import dev.skrilltrax.blockka.data.repo.RecentRepository
+import dev.skrilltrax.sqldelight.Contact
 import kotlinx.coroutines.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -48,8 +49,9 @@ class IncomingCallReceiver : BroadcastReceiver() {
         val normalizedNumber = PhoneNumberUtils.normalizeNumber(number)
 
         coroutineScope.launch {
-            if (shouldRejectCall(normalizedNumber)) {
-                rejectCall(normalizedNumber)
+            val contact = shouldRejectCall(normalizedNumber)
+            if (contact is Contact) {
+                rejectCall(contact)
             }
         }
 
@@ -98,15 +100,20 @@ class IncomingCallReceiver : BroadcastReceiver() {
                 previousState == TelephonyManager.CALL_STATE_IDLE
     }
 
-    private suspend fun rejectCall(number: String) {
+    private suspend fun rejectCall(contact: Contact) {
         withContext(Dispatchers.Main) {
-            contactRepository.incrementCallCount(number)
-            recentRepository.addRecent(number)
-            incomingCallManager.rejectCall(number)
+            val normalizedNumber = PhoneNumberUtils.normalizeNumber(contact.number)
+            contactRepository.incrementCallCount(contact)
+            if (contact.name != null) {
+                recentRepository.addRecent(normalizedNumber, contact.name)
+            } else {
+                recentRepository.addRecent(normalizedNumber)
+            }
+            incomingCallManager.rejectCall(normalizedNumber)
         }
     }
 
-    private suspend fun shouldRejectCall(number: String): Boolean {
-        return contactRepository.isContactBlocked(number)
+    private suspend fun shouldRejectCall(number: String): Contact? {
+        return contactRepository.getContactByNumber(number)
     }
 }

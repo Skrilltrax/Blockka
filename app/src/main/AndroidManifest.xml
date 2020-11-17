@@ -30,12 +30,14 @@
             </intent-filter>
         </receiver>
 
+        <!-- TODO: Use call screening service for API 29+
         <service android:name=".data.service.BlockkaCallScreeningService"
             android:permission="android.permission.BIND_SCREENING_SERVICE">
             <intent-filter>
                 <action android:name="android.telecom.CallScreeningService"/>
             </intent-filter>
         </service>
+        -->
 
     </application>
 

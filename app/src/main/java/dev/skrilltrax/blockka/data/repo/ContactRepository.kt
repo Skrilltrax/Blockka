@@ -71,6 +71,10 @@ class ContactRepository @Inject constructor(private val contactQueries: ContactQ
     return contactQueries.selectAllContacts().asFlow().mapToList()
   }
 
+  suspend fun getContactByNumber(number: String) = withContext(Dispatchers.IO) {
+    return@withContext contactQueries.selectContactByNumber(number).executeAsOneOrNull()
+  }
+
   suspend fun incrementCallCount(contact: Contact) = withContext(Dispatchers.IO) {
     if (isContactBlocked(contact.number)) {
       contactQueries.incrementCallCount(contact.id)
