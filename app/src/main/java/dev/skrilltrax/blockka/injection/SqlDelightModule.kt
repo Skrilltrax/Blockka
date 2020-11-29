@@ -18,27 +18,27 @@ import javax.inject.Singleton
 @Module
 object SqlDelightModule {
 
-    @Provides
-    @Singleton
-    fun provideAndroidDriver(@ApplicationContext applicationContext: Context): SqlDriver {
-        return AndroidSqliteDriver(Schema, applicationContext, "blockedContacts.db")
-    }
+  @Provides
+  @Singleton
+  fun provideAndroidDriver(@ApplicationContext applicationContext: Context): SqlDriver {
+    return AndroidSqliteDriver(Schema, applicationContext, "blockedContacts.db")
+  }
 
-    @Provides
-    @Singleton
-    fun provideContactsDatabase(driver: SqlDriver): BlockkaDatabase {
-        return BlockkaDatabase(driver)
-    }
+  @Provides
+  @Singleton
+  fun provideContactsDatabase(driver: SqlDriver): BlockkaDatabase {
+    return BlockkaDatabase(driver)
+  }
 
-    @Provides
-    @Singleton
-    fun provideContactQueries(database: BlockkaDatabase): ContactQueries {
-        return database.contactQueries
-    }
+  @Provides
+  @Singleton
+  fun provideContactQueries(database: BlockkaDatabase): ContactQueries {
+    return database.contactQueries
+  }
 
-    @Provides
-    @Singleton
-    fun provideRecentContactQueries(database: BlockkaDatabase): RecentContactQueries {
-        return database.recentContactQueries
-    }
+  @Provides
+  @Singleton
+  fun provideRecentContactQueries(database: BlockkaDatabase): RecentContactQueries {
+    return database.recentContactQueries
+  }
 }

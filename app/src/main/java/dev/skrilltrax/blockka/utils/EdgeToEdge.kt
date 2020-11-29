@@ -4,12 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.marginBottom
-import androidx.core.view.marginLeft
-import androidx.core.view.marginRight
-import androidx.core.view.marginTop
-import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePadding
+import androidx.core.view.*
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -78,7 +73,10 @@ private class RealEdgeToEdge : EdgeToEdgeImpl {
     setUpAppBar(appBar, null)
   }
 
-  override fun setUpScrollingContent(scrollingContent: ViewGroup, fab: ExtendedFloatingActionButton?) {
+  override fun setUpScrollingContent(
+    scrollingContent: ViewGroup,
+    fab: ExtendedFloatingActionButton?
+  ) {
     val originalPaddingLeft = scrollingContent.paddingLeft
     val originalPaddingRight = scrollingContent.paddingRight
     val originalPaddingBottom = scrollingContent.paddingBottom

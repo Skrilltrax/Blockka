@@ -45,7 +45,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
-      (binding.recyclerview.adapter as ContactListAdapter).requireSelectionTracker().clearSelection()
+      (binding.recyclerview.adapter as ContactListAdapter).requireSelectionTracker()
+        .clearSelection()
       actionMode?.finish()
       actionMode = null
     }
