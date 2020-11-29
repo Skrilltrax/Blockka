@@ -72,6 +72,7 @@ dependencies {
     implementation(Dependencies.ThirdParty.SQLDelight.coroutinesExtension)
 
     testImplementation(Dependencies.Testing.junit)
+    testImplementation(Dependencies.Testing.AndroidX.runner)
     testImplementation(Dependencies.ThirdParty.SQLDelight.jvmDriver)
 
     kapt(Dependencies.AndroidX.Hilt.daggerCompiler)

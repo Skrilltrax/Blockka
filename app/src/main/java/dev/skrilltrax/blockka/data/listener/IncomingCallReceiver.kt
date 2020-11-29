@@ -1,5 +1,6 @@
 package dev.skrilltrax.blockka.data.listener
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -32,6 +33,7 @@ class IncomingCallReceiver : BroadcastReceiver() {
     private val coroutineScope = CoroutineScope(job + Dispatchers.IO)
     private var previousState = TelephonyManager.CALL_STATE_IDLE
 
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             // We are gonna use the CallScreeningApi in this case
