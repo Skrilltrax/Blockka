@@ -19,11 +19,6 @@ SELECT *
 FROM Contact
 WHERE number = ?;
 
-insertOrReplaceContact:
-INSERT OR REPLACE
-INTO Contact
-VALUES ?;
-
 insertContactByNumber:
 INSERT OR REPLACE
 INTO Contact(number)

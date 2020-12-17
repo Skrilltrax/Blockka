@@ -19,11 +19,6 @@ SELECT *
 FROM RecentContact
 WHERE id = ?;
 
-insertContact:
-INSERT OR REPLACE
-INTO RecentContact
-VALUES ?;
-
 insertContactByNumber:
 INSERT OR REPLACE
 INTO RecentContact(number, timestamp)
