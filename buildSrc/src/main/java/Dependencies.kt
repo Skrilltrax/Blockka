@@ -1,4 +1,4 @@
-private const val AGP_VERSION = "4.2.0-alpha16"
+private const val AGP_VERSION = "7.0.0-alpha02"
 private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha02"
 private const val DAGGER_HILT_VERSION = "2.29.1-alpha"
 private const val KOTLIN_VERSION = "1.4.10"
