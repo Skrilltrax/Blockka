@@ -13,32 +13,16 @@ import javax.inject.Inject
 
 class ContactRepository @Inject constructor(private val contactQueries: ContactQueries) {
 
-  suspend fun isContactBlocked(number: String): Boolean = withContext(Dispatchers.IO) {
+  private suspend fun isContactBlocked(number: String): Boolean = withContext(Dispatchers.IO) {
     return@withContext isContactBlockedLoosely(number)
   }
 
-  suspend fun addContact(contact: Contact) = withContext(Dispatchers.IO) {
-    contactQueries.insertOrReplaceContact(contact)
-  }
-
-  suspend fun addContact(number: String) = withContext(Dispatchers.IO) {
+  private suspend fun addContact(number: String) = withContext(Dispatchers.IO) {
     contactQueries.insertContactByNumber(number)
   }
 
-  suspend fun addContact(number: String, name: String) = withContext(Dispatchers.IO) {
+  private suspend fun addContact(number: String, name: String) = withContext(Dispatchers.IO) {
     contactQueries.insertContactByNumberAndName(number, name)
-  }
-
-  suspend fun addContactLoosely(contact: Contact) = withContext(Dispatchers.IO) {
-    val allContacts = contactQueries.selectAllContacts().executeAsList()
-
-    allContacts.forEach {
-      if (PhoneNumberUtils.compare(it.number, contact.number)) {
-        return@withContext
-      }
-    }
-
-    contactQueries.insertOrReplaceContact(contact)
   }
 
   suspend fun addContactLoosely(number: String) = withContext(Dispatchers.IO) {
@@ -87,7 +71,11 @@ class ContactRepository @Inject constructor(private val contactQueries: ContactQ
     if (isContactBlocked(contact.number)) {
       contactQueries.incrementCallCount(contact.id)
     } else {
-      addContact(contact)
+      if (contact.name == null) {
+        addContact(contact.number)
+      } else {
+        addContact(contact.name, contact.number)
+      }
     }
   }
 

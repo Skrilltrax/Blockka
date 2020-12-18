@@ -37,7 +37,7 @@ WHERE id = ?;
 incrementCallCountByNumber:
 UPDATE Contact
 SET call_count = call_count + 1
-WHERE id = ?;
+WHERE number = ?;
 
 deleteContact:
 DELETE
