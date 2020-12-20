@@ -9,5 +9,8 @@ import androidx.annotation.RequiresApi
 class BlockkaCallScreeningService : CallScreeningService() {
 
   override fun onScreenCall(callDetails: Call.Details) {
+    if (callDetails.callDirection == Call.Details.DIRECTION_INCOMING) {
+
+    }
   }
 }

@@ -1,11 +1,13 @@
 package dev.skrilltrax.blockka.ui
 
 import android.Manifest
+import android.content.ContentUris
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.Phone
+import android.provider.ContactsContract.Contacts
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -28,6 +30,7 @@ import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import dev.skrilltrax.blockka.utils.viewBinding
 import timber.log.Timber
 
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -48,17 +51,18 @@ class MainActivity : AppCompatActivity() {
 
     try {
       if (cursor != null && cursor.moveToFirst()) {
-        val hasPhone =
-          cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
-
+        val hasPhone = cursor.getString(cursor.getColumnIndex(Contacts.HAS_PHONE_NUMBER))
         if (hasPhone.trim() != "1") return@registerForActivityResult
 
-        val name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
-        val contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+        val name = cursor.getString(cursor.getColumnIndex(Contacts.DISPLAY_NAME))
+        val contactId = cursor.getString(cursor.getColumnIndex(Contacts._ID))
+
+        val contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId.toLong())
+        val photoUri = Uri.withAppendedPath(contactUri, Contacts.Photo.CONTENT_DIRECTORY)
 
         val phones = contentResolver.query(
           Phone.CONTENT_URI,
-          null,
+          arrayOf(Phone.NUMBER),
           Phone.CONTACT_ID + " = " + contactId,
           null,
           null
@@ -69,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         if (phones != null && phones.moveToFirst()) {
           do {
             val number = phones.getString(phones.getColumnIndex(Phone.NUMBER))
-            contactList.add(LocalContact(name, number))
+            contactList.add(LocalContact(name, number, photoUri.toString()))
           } while (phones.moveToNext())
 
           viewModel.addContacts(contactList)
