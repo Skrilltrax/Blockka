@@ -46,7 +46,7 @@ class ContactViewModel @ViewModelInject constructor(
       contactList.forEach {
         val normalizedNumber = PhoneNumberUtils.normalizeNumber(it.number)
 
-        contactRepository.addContactLoosely(normalizedNumber, it.name)
+        contactRepository.addContactLoosely(normalizedNumber, it.name, it.imageUri)
       }
     }
   }
