@@ -9,18 +9,18 @@ import java.lang.reflect.Method
 import javax.inject.Inject
 
 class IncomingCallManager21Impl @Inject constructor(private val context: Context) :
-    IncomingCallManager {
+  IncomingCallManager {
 
-    override fun rejectCall(number: String): Boolean {
-        Timber.d("Rejecting call: IncomingCallManager21Impl")
+  override fun rejectCall(number: String): Boolean {
+    Timber.d("Rejecting call: IncomingCallManager21Impl")
 
-        val telephonyManager = context.getSystemService<TelephonyManager>() ?: return false
-        val clazz = Class.forName(telephonyManager.javaClass.name)
-        val method: Method = clazz.getDeclaredMethod("getITelephony")
-        method.isAccessible = true
-        val telephonyService: ITelephony = method.invoke(telephonyManager) as ITelephony
+    val telephonyManager = context.getSystemService<TelephonyManager>() ?: return false
+    val clazz = Class.forName(telephonyManager.javaClass.name)
+    val method: Method = clazz.getDeclaredMethod("getITelephony")
+    method.isAccessible = true
+    val telephonyService: ITelephony = method.invoke(telephonyManager) as ITelephony
 
-        return telephonyService.endCall()
-    }
+    return telephonyService.endCall()
+  }
 
 }

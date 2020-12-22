@@ -1,15 +1,15 @@
 package dev.skrilltrax.blockka.ui.fragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import dev.skrilltrax.blockka.R
 import dev.skrilltrax.blockka.databinding.FragmentHomeBinding
 import dev.skrilltrax.blockka.ui.MainActivity
-import dev.skrilltrax.blockka.ui.adapter.ContactListAdapter
 import dev.skrilltrax.blockka.ui.adapter.RecentContactListAdapter
 import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import kotlinx.coroutines.flow.collect
@@ -36,13 +36,11 @@ class RecentFragment : Fragment() {
 
     binding.recyclerview.apply {
       adapter = RecentContactListAdapter(emptyList()).onItemClicked { holder, item ->
-        Timber.d(item.toString())
       }
     }
 
     lifecycleScope.launchWhenResumed {
       viewmodel.getAllRecentContacts().collect {
-        Timber.d(it.toString())
         (binding.recyclerview.adapter as RecentContactListAdapter).updateList(it)
       }
     }

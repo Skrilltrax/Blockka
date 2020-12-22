@@ -13,9 +13,9 @@ import dev.skrilltrax.blockka.data.manager.IncomingCallManager
 @Module
 object IncomingCallManagerModule {
 
-    @Provides
-    @Reusable
-    fun provideIncomingCallManager(@ApplicationContext context: Context): IncomingCallManager {
-        return IncomingCallManager.getInstance(context)
-    }
+  @Provides
+  @Reusable
+  fun provideIncomingCallManager(@ApplicationContext context: Context): IncomingCallManager {
+    return IncomingCallManager.getInstance(context)
+  }
 }

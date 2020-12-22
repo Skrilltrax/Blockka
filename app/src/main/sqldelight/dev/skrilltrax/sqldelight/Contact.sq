@@ -19,11 +19,6 @@ SELECT *
 FROM Contact
 WHERE number = ?;
 
-insertOrReplaceContact:
-INSERT OR REPLACE
-INTO Contact
-VALUES ?;
-
 insertContactByNumber:
 INSERT OR REPLACE
 INTO Contact(number)
@@ -42,7 +37,7 @@ WHERE id = ?;
 incrementCallCountByNumber:
 UPDATE Contact
 SET call_count = call_count + 1
-WHERE id = ?;
+WHERE number = ?;
 
 deleteContact:
 DELETE

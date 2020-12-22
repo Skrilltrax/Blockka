@@ -2,65 +2,65 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
+    style="@style/BottomSheetDialogTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/bottom_sheet_top_padding"
-    style="@style/BottomSheetDialogTheme">
+    android:paddingTop="@dimen/bottom_sheet_top_padding">
 
     <TextView
         android:id="@+id/tv_enter_number"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/normal_margin"
         android:text="@string/enter_contact_details"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/til_number"
-        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_number"
+        style="@style/CustomTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/normal_margin"
         android:hint="@string/enter_number"
-        app:startIconDrawable="@drawable/ic_edit_24"
-        app:startIconTint="@color/secondary_color"
-        app:layout_constraintTop_toBottomOf="@id/tv_enter_number"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/CustomTextInputLayoutStyle">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_enter_number"
+        app:startIconDrawable="@drawable/ic_edit_24"
+        app:startIconTint="@color/secondary_color">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiet_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"/>
+            android:inputType="phone" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_name"
+        style="@style/CustomTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
         android:hint="Enter Name"
-        app:startIconDrawable="@drawable/ic_edit_24"
-        app:startIconTint="@color/secondary_color"
-        app:layout_constraintTop_toBottomOf="@id/til_number"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/CustomTextInputLayoutStyle">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_number"
+        app:startIconDrawable="@drawable/ic_edit_24"
+        app:startIconTint="@color/secondary_color">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiet_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,10 +71,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="@dimen/normal_margin"
         android:backgroundTint="@color/secondary_color"
+        android:text="Done"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/til_name"
-        app:layout_constraintEnd_toEndOf="@id/til_name"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Done" />
+        app:layout_constraintEnd_toEndOf="@id/til_name"
+        app:layout_constraintTop_toBottomOf="@id/til_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

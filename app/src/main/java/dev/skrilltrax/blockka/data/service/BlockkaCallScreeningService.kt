@@ -6,8 +6,8 @@ import android.telecom.CallScreeningService
 import androidx.annotation.RequiresApi
 
 @RequiresApi(Build.VERSION_CODES.Q)
-class BlockkaCallScreeningService: CallScreeningService() {
+class BlockkaCallScreeningService : CallScreeningService() {
 
-    override fun onScreenCall(callDetails: Call.Details) {
-    }
+  override fun onScreenCall(callDetails: Call.Details) {
+  }
 }
