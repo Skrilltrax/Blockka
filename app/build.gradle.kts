@@ -67,6 +67,7 @@ dependencies {
   implementation(Dependencies.AndroidX.Hilt.dagger)
   implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewmodel)
 
+  implementation(Dependencies.ThirdParty.coil)
   implementation(Dependencies.ThirdParty.timber)
   implementation(Dependencies.ThirdParty.SQLDelight.androidDriver)
   implementation(Dependencies.ThirdParty.SQLDelight.coroutinesExtension)
