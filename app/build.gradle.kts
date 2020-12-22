@@ -24,8 +24,8 @@ android {
     getByName("release") {
       isMinifyEnabled = false
       proguardFiles(
-          getDefaultProguardFile("proguard-android-optimize.txt"),
-          "proguard-rules.pro"
+        getDefaultProguardFile("proguard-android-optimize.txt"),
+        "proguard-rules.pro"
       )
     }
   }
@@ -74,6 +74,8 @@ dependencies {
   testImplementation(Dependencies.Testing.junit)
   testImplementation(Dependencies.Testing.AndroidX.runner)
   testImplementation(Dependencies.ThirdParty.SQLDelight.jvmDriver)
+
+  androidTestImplementation(Dependencies.Testing.AndroidX.Ext.junit)
 
   kapt(Dependencies.AndroidX.Hilt.daggerCompiler)
   kapt(Dependencies.AndroidX.Hilt.daggerHiltCompiler)

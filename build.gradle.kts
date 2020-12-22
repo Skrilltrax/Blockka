@@ -19,17 +19,21 @@ buildscript {
 }
 
 plugins {
-  id("com.diffplug.gradle.spotless") version "3.26.1"
+  id("com.diffplug.spotless") version "5.7.0"
 }
 
 spotless {
   kotlin {
     target("**/*.kt")
-    ktlint()
+    trimTrailingWhitespace()
+    indentWithSpaces()
+    endWithNewline()
   }
   kotlinGradle {
     target("**/*.gradle.kts")
-    ktlint()
+    trimTrailingWhitespace()
+    indentWithSpaces()
+    endWithNewline()
   }
 }
 

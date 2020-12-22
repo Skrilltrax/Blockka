@@ -27,8 +27,10 @@ import javax.inject.Inject
 class IncomingCallReceiver : BroadcastReceiver() {
   @Inject
   lateinit var contactRepository: ContactRepository
+
   @Inject
   lateinit var recentRepository: RecentRepository
+
   @Inject
   lateinit var incomingCallManager: IncomingCallManager
 
@@ -104,9 +106,9 @@ class IncomingCallReceiver : BroadcastReceiver() {
 
   private fun isIncomingCall(extraState: String): Boolean {
     val currentState = when (extraState) {
-        TelephonyManager.EXTRA_STATE_IDLE -> TelephonyManager.CALL_STATE_IDLE
-        TelephonyManager.EXTRA_STATE_OFFHOOK -> TelephonyManager.CALL_STATE_OFFHOOK
-        TelephonyManager.EXTRA_STATE_RINGING -> TelephonyManager.CALL_STATE_RINGING
+      TelephonyManager.EXTRA_STATE_IDLE -> TelephonyManager.CALL_STATE_IDLE
+      TelephonyManager.EXTRA_STATE_OFFHOOK -> TelephonyManager.CALL_STATE_OFFHOOK
+      TelephonyManager.EXTRA_STATE_RINGING -> TelephonyManager.CALL_STATE_RINGING
       else -> TelephonyManager.CALL_STATE_IDLE
     }
 
@@ -147,7 +149,7 @@ class IncomingCallReceiver : BroadcastReceiver() {
     val notification = NotificationCompat.Builder(context, CHANNEL_ID)
       .setContentTitle(context.getString(R.string.blocked_call_from, blockedFromText))
       .setContentText(
-          context.getString(R.string.total_calls_blocked_from_number, blockedCount.toString())
+        context.getString(R.string.total_calls_blocked_from_number, blockedCount.toString())
       )
       .setSmallIcon(R.drawable.ic_contacts_24)
       .setPriority(NotificationCompat.PRIORITY_HIGH)

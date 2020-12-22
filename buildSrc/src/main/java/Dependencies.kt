@@ -117,6 +117,13 @@ object Dependencies {
       private const val version = "1.3.1-alpha02"
       const val runner = "androidx.test:runner:$version"
       const val rules = "androidx.test:rules:$version"
+
+      object Ext {
+
+        private const val version = "1.1.3-alpha02"
+        const val junit = "androidx.test.ext:junit:$version"
+      }
+
     }
   }
 }
