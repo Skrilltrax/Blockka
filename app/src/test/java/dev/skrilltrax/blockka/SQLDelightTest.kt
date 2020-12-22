@@ -6,9 +6,7 @@ import dev.skrilltrax.blockka.model.BlockkaDatabase
 import dev.skrilltrax.sqldelight.ContactQueries
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.BeforeClass
 import org.junit.Test
 
 class SQLDelightTest {

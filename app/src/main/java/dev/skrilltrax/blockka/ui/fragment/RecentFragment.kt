@@ -13,7 +13,6 @@ import dev.skrilltrax.blockka.ui.MainActivity
 import dev.skrilltrax.blockka.ui.adapter.RecentContactListAdapter
 import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import kotlinx.coroutines.flow.collect
-import timber.log.Timber
 
 @AndroidEntryPoint
 class RecentFragment : Fragment() {
