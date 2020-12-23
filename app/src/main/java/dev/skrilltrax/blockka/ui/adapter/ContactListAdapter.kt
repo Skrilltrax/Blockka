@@ -1,13 +1,21 @@
 package dev.skrilltrax.blockka.ui.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.selection.*
 import androidx.recyclerview.widget.RecyclerView
+import coil.Coil
+import coil.load
+import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import dev.skrilltrax.blockka.databinding.ItemContactBinding
 import dev.skrilltrax.sqldelight.Contact
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ContactListAdapter(private var contactList: List<Contact>) :
   RecyclerView.Adapter<ContactListAdapter.ContactViewHolder>() {
@@ -78,6 +86,8 @@ class ContactListAdapter(private var contactList: List<Contact>) :
   inner class ContactViewHolder(itemView: View, private val binding: ItemContactBinding) :
     RecyclerView.ViewHolder(itemView) {
 
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+
     fun bind(contact: Contact, isSelected: Boolean) {
       with(binding) {
         if (contact.name.isNullOrEmpty()) {
@@ -87,6 +97,13 @@ class ContactListAdapter(private var contactList: List<Contact>) :
           subtitleText.visibility = View.VISIBLE
           titleText.text = contact.name
           subtitleText.text = contact.number
+        }
+      }
+
+      if (!contact.image_uri.isNullOrEmpty()) {
+        val imageUri = Uri.parse(contact.image_uri)
+        binding.imageview.load(imageUri) {
+          transformations(CircleCropTransformation())
         }
       }
 

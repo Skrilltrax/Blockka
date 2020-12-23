@@ -22,7 +22,7 @@ class ContactRepository @Inject constructor(private val contactQueries: ContactQ
   }
 
   private suspend fun addContact(number: String, name: String) = withContext(Dispatchers.IO) {
-    contactQueries.insertContactByNumberAndName(number, name)
+    contactQueries.insertContactByNumberName(number, name)
   }
 
   suspend fun addContactLoosely(number: String) = withContext(Dispatchers.IO) {
@@ -37,7 +37,7 @@ class ContactRepository @Inject constructor(private val contactQueries: ContactQ
     contactQueries.insertContactByNumber(number)
   }
 
-  suspend fun addContactLoosely(number: String, name: String) = withContext(Dispatchers.IO) {
+  suspend fun addContactLoosely(number: String, name: String, imageUri: String? = null) = withContext(Dispatchers.IO) {
     val allContacts = contactQueries.selectAllContacts().executeAsList()
     var shouldAdd = true
 
@@ -48,7 +48,7 @@ class ContactRepository @Inject constructor(private val contactQueries: ContactQ
       }
     }
 
-    if (shouldAdd) contactQueries.insertContactByNumberAndName(number, name)
+    if (shouldAdd) contactQueries.insertContactByNumberNameImage(number, name, imageUri)
   }
 
   fun getAllContacts(): Flow<List<Contact>> {

@@ -96,6 +96,7 @@ object Dependencies {
     const val accompanist = "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
     const val customtabs = "saschpe.android:customtabs:3.0.2"
     const val timber = "com.jakewharton.timber:timber:4.7.1"
+    const val coil = "io.coil-kt:coil:1.1.0"
 
     object SQLDelight {
 

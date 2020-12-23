@@ -2,7 +2,8 @@ CREATE TABLE RecentContact (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 number TEXT NOT NULL,
 name TEXT,
-timestamp TEXT NOT NULL DEFAULT 0
+timestamp TEXT NOT NULL DEFAULT 0,
+image_uri TEXT
 );
 
 selectAll:
@@ -28,3 +29,8 @@ insertContactByNumberName:
 INSERT OR REPLACE
 INTO RecentContact(number, name, timestamp)
 VALUES (?, ?, ?);
+
+insertContactByNumberNameImage:
+INSERT OR REPLACE
+INTO RecentContact(number, name, timestamp, image_uri)
+VALUES (?, ?, ?, ?);
