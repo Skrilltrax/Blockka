@@ -23,7 +23,7 @@ class SQLDelightTest {
   @Test
   fun `select all items`() = runBlocking {
     val data = createTestData(3)
-    data.forEach { contactQueries.insertContactByNumberAndName(it.number, it.name) }
+    data.forEach { contactQueries.insertContactByNumberName(it.number, it.name) }
     val output = contactQueries.selectAllContacts().executeAsList()
 
     assertEquals(3, output.size)
