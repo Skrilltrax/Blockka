@@ -20,4 +20,3 @@ A call blocking app for android which I made as an assignment for pratilipi. The
 
 1. Show calls blocked for a particular contact
 2. Unit tests and Integration tests
-3. Add more contact metadata
