@@ -9,7 +9,7 @@ object Plugins {
   const val agp = "com.android.tools.build:gradle:$AGP_VERSION"
   const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
   const val hilt = "com.google.dagger:hilt-android-gradle-plugin:$DAGGER_HILT_VERSION"
-  const val sqldelight = "com.squareup.sqldelight:gradle-plugin:$SQLDELIGHT_VERSION"
+  const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:$SQLDELIGHT_VERSION"
 }
 
 

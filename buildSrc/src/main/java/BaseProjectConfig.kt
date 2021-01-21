@@ -6,7 +6,6 @@
 import com.android.build.gradle.TestedExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.tasks.Delete
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
@@ -21,9 +20,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
  */
 internal fun Project.configureForRootProject() {
   // register task for cleaning the build directory in the root project
-  tasks.register("clean", Delete::class.java) {
-    delete(rootProject.buildDir)
-  }
   tasks.withType<Wrapper> {
     gradleVersion = "6.8"
     distributionType = Wrapper.DistributionType.ALL
@@ -78,8 +74,7 @@ internal fun BaseAppModuleExtension.configureAndroidApplicationOptions(project: 
 
   project.tasks.withType<KotlinCompile> {
     kotlinOptions {
-      freeCompilerArgs = freeCompilerArgs + listOf(
-        "-Xopt-in=kotlin.RequiresOptIn",
+      freeCompilerArgs = freeCompilerArgs + additionalCompilerArgs + listOf(
         "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
         "-Xopt-in=androidx.compose.material.ExperimentalMaterialApi"
       )
