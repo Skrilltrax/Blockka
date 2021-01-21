@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.selection.*
 import androidx.recyclerview.widget.RecyclerView
-import coil.Coil
 import coil.load
-import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import dev.skrilltrax.blockka.databinding.ItemContactBinding
 import dev.skrilltrax.sqldelight.Contact
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ContactListAdapter(private var contactList: List<Contact>) :
   RecyclerView.Adapter<ContactListAdapter.ContactViewHolder>() {

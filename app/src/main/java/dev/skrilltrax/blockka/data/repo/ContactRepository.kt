@@ -37,19 +37,20 @@ class ContactRepository @Inject constructor(private val contactQueries: ContactQ
     contactQueries.insertContactByNumber(number)
   }
 
-  suspend fun addContactLoosely(number: String, name: String, imageUri: String? = null) = withContext(Dispatchers.IO) {
-    val allContacts = contactQueries.selectAllContacts().executeAsList()
-    var shouldAdd = true
+  suspend fun addContactLoosely(number: String, name: String, imageUri: String? = null) =
+    withContext(Dispatchers.IO) {
+      val allContacts = contactQueries.selectAllContacts().executeAsList()
+      var shouldAdd = true
 
-    allContacts.forEach {
-      if (PhoneNumberUtils.compare(it.number, number)) {
-        Timber.d(it.number)
-        shouldAdd = false
+      allContacts.forEach {
+        if (PhoneNumberUtils.compare(it.number, number)) {
+          Timber.d(it.number)
+          shouldAdd = false
+        }
       }
-    }
 
-    if (shouldAdd) contactQueries.insertContactByNumberNameImage(number, name, imageUri)
-  }
+      if (shouldAdd) contactQueries.insertContactByNumberNameImage(number, name, imageUri)
+    }
 
   fun getAllContacts(): Flow<List<Contact>> {
     return contactQueries.selectAllContacts().asFlow().mapToList()
