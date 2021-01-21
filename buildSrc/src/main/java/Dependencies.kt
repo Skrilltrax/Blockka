@@ -1,7 +1,7 @@
-private const val AGP_VERSION = "7.0.0-alpha02"
+private const val AGP_VERSION = "7.0.0-alpha04"
 private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha02"
-private const val DAGGER_HILT_VERSION = "2.29.1-alpha"
-private const val KOTLIN_VERSION = "1.4.10"
+private const val DAGGER_HILT_VERSION = "2.31.1-alpha"
+private const val KOTLIN_VERSION = "1.4.21"
 private const val SQLDELIGHT_VERSION = "1.4.4"
 
 object Plugins {
@@ -14,7 +14,7 @@ object Plugins {
 
 
 object Dependencies {
-  const val COMPOSE_VERSION = "1.0.0-alpha07"
+  const val COMPOSE_VERSION = "1.0.0-alpha10"
 
   object Kotlin {
 
@@ -24,33 +24,15 @@ object Dependencies {
       const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
       const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
     }
-
-    object Ktor {
-
-      private const val version = "1.4.1"
-      const val clientCore = "io.ktor:ktor-client-core:$version"
-      const val clientJson = "io.ktor:ktor-client-json:$version"
-      const val clientSerialization = "io.ktor:ktor-client-serialization:$version"
-      const val clientOkHttp = "io.ktor:ktor-client-okhttp:$version"
-      const val clientTest = "io.ktor:ktor-client-mock:$version"
-    }
-
-    object Serialization {
-
-      private const val version = "1.0.1"
-      const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
-    }
   }
 
   object AndroidX {
 
-    const val activityKtx = "androidx.activity:activity-ktx:1.2.0-beta01"
-    const val appCompat = "androidx.appcompat:appcompat:1.3.0-alpha02"
-    const val browser = "androidx.browser:browser:1.3.0-rc01"
-    const val coreKtx = "androidx.core:core-ktx:1.5.0-alpha05"
-    const val coreLibraryDesugaring = "com.android.tools:desugar_jdk_libs:1.0.10"
-    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-beta01"
-    const val material = "com.google.android.material:material:1.3.0-alpha03"
+    const val activityKtx = "androidx.activity:activity-ktx:1.2.0-rc01"
+    const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
+    const val coreKtx = "androidx.core:core-ktx:1.5.0-beta01"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-rc01"
+    const val material = "com.google.android.material:material:1.3.0-rc01"
     const val recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
 
     object Compose {
@@ -76,7 +58,7 @@ object Dependencies {
 
     object Lifecycle {
 
-      private const val version = "2.3.0-beta01"
+      private const val version = "2.3.0-rc01"
       const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
       const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
       const val process = "androidx.lifecycle:lifecycle-process:$version"
@@ -85,7 +67,7 @@ object Dependencies {
 
     object Navigation {
 
-      private const val version = "2.3.1"
+      private const val version = "2.3.2"
       const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
       const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
     }
@@ -94,9 +76,8 @@ object Dependencies {
   object ThirdParty {
 
     const val accompanist = "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
-    const val customtabs = "saschpe.android:customtabs:3.0.2"
     const val timber = "com.jakewharton.timber:timber:4.7.1"
-    const val coil = "io.coil-kt:coil:1.1.0"
+    const val coil = "io.coil-kt:coil:1.1.1"
 
     object SQLDelight {
 
@@ -115,13 +96,13 @@ object Dependencies {
 
     object AndroidX {
 
-      private const val version = "1.3.1-alpha02"
+      private const val version = "1.3.1-alpha03"
       const val runner = "androidx.test:runner:$version"
       const val rules = "androidx.test:rules:$version"
 
       object Ext {
 
-        private const val version = "1.1.3-alpha02"
+        private const val version = "1.1.3-alpha03"
         const val junit = "androidx.test.ext:junit:$version"
       }
 
