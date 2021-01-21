@@ -7,8 +7,6 @@ import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.plugins.AppPlugin
 import com.android.build.gradle.internal.plugins.LibraryPlugin
-import com.diffplug.gradle.spotless.SpotlessExtension
-import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.squareup.sqldelight.gradle.SqlDelightExtension
 import com.squareup.sqldelight.gradle.SqlDelightPlugin
 import org.gradle.api.Plugin
@@ -21,9 +19,6 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
-
-
-
 
 class BlockkaPlugin : Plugin<Project> {
 
@@ -58,9 +53,6 @@ class BlockkaPlugin : Plugin<Project> {
         }
         is Kapt3GradleSubplugin -> {
           project.extensions.getByType<KaptExtension>().configureKapt()
-        }
-        is SpotlessPlugin -> {
-          project.extensions.getByType<SpotlessExtension>().configureSpotless()
         }
         is SqlDelightPlugin -> {
           project.extensions.getByType<SqlDelightExtension>().configureDatabase()

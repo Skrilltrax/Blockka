@@ -3,7 +3,6 @@ rootProject.ext.versions = [
     hilt      : '2.31.1-alpha',
     kotlin    : '1.4.21',
     lint      : '27.3.0-alpha04',
-    spotless  : '5.9.0',
     sqlDelight: '1.4.4',
 ]
 
@@ -15,5 +14,4 @@ rootProject.ext.build = [
     hiltGradlePlugin                : "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}",
     kotlinGradlePlugin              : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
     sqlDelightGradlePlugin          : "com.squareup.sqldelight:gradle-plugin:${versions.sqlDelight}",
-    spotlessGradlePlugin            : "com.diffplug.spotless:spotless-plugin-gradle:${versions.spotless}",
 ]

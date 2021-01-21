@@ -14,7 +14,6 @@ buildscript {
     classpath(build.getValue("androidGradlePlugin"))
     classpath(build.getValue("hiltGradlePlugin"))
     classpath(build.getValue("kotlinGradlePlugin"))
-    classpath(build.getValue("spotlessGradlePlugin"))
     classpath(build.getValue("sqlDelightGradlePlugin"))
 
     // NOTE: Do not place your application dependencies here; they belong
@@ -23,7 +22,6 @@ buildscript {
 }
 
 plugins {
-  id("com.diffplug.spotless")
   id("com.github.ben-manes.versions") version "0.36.0"
   `blockka-plugin`
 }

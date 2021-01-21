@@ -33,6 +33,5 @@ dependencies {
   implementation(build.getValue("androidGradlePlugin_lintModel"))
   implementation(build.getValue("hiltGradlePlugin"))
   implementation(build.getValue("kotlinGradlePlugin"))
-  implementation(build.getValue("spotlessGradlePlugin"))
   implementation(build.getValue("sqlDelightGradlePlugin"))
 }
