@@ -2,7 +2,7 @@ name: Android CI
 
 on: 
   push:
-    branches: [main, dev]
+    branches: [main]
   pull_request:
     branches: '*'
 
@@ -18,4 +18,4 @@ jobs:
       with:
         java-version: '11'
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew check
