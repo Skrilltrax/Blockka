@@ -1,13 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-  val kotlin_version by extra("1.4.10")
-  val compose_version by extra("1.0.0-alpha04")
+  val kotlin_version by extra("1.4.21")
+  val compose_version by extra("1.0.0-alpha10")
+
   repositories {
     google()
     jcenter()
     mavenCentral()
   }
+
   dependencies {
     classpath(Plugins.agp)
     classpath(Plugins.kotlin)
@@ -19,7 +21,9 @@ buildscript {
 }
 
 plugins {
-  id("com.diffplug.spotless") version "5.7.0"
+  id("com.diffplug.spotless") version "5.9.0"
+  id("com.github.ben-manes.versions") version "0.36.0"
+
 }
 
 spotless {
