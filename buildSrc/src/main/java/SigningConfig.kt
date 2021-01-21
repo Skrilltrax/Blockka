@@ -4,8 +4,8 @@
  */
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import java.util.Properties
 import org.gradle.api.Project
+import java.util.Properties
 
 private const val KEYSTORE_CONFIG_PATH = "keystore.properties"
 
@@ -14,21 +14,21 @@ private const val KEYSTORE_CONFIG_PATH = "keystore.properties"
  */
 @Suppress("UnstableApiUsage")
 internal fun BaseAppModuleExtension.configureBuildSigning(project: Project) {
-    with(project) {
-        val keystoreConfigFile = rootProject.layout.projectDirectory.file(KEYSTORE_CONFIG_PATH)
-        if (!keystoreConfigFile.asFile.exists()) return
-        val contents = providers.fileContents(keystoreConfigFile).asText.forUseAtConfigurationTime()
-        val keystoreProperties = Properties()
-        keystoreProperties.load(contents.get().byteInputStream())
-        signingConfigs {
-            register("release") {
-                keyAlias = keystoreProperties["keyAlias"] as String
-                keyPassword = keystoreProperties["keyPassword"] as String
-                storeFile = rootProject.file(keystoreProperties["storeFile"] as String)
-                storePassword = keystoreProperties["storePassword"] as String
-            }
-        }
-        val signingConfig = signingConfigs.getByName("release")
-        buildTypes.all { setSigningConfig(signingConfig) }
+  with(project) {
+    val keystoreConfigFile = rootProject.layout.projectDirectory.file(KEYSTORE_CONFIG_PATH)
+    if (!keystoreConfigFile.asFile.exists()) return
+    val contents = providers.fileContents(keystoreConfigFile).asText.forUseAtConfigurationTime()
+    val keystoreProperties = Properties()
+    keystoreProperties.load(contents.get().byteInputStream())
+    signingConfigs {
+      register("release") {
+        keyAlias = keystoreProperties["keyAlias"] as String
+        keyPassword = keystoreProperties["keyPassword"] as String
+        storeFile = rootProject.file(keystoreProperties["storeFile"] as String)
+        storePassword = keystoreProperties["storePassword"] as String
+      }
     }
+    val signingConfig = signingConfigs.getByName("release")
+    buildTypes.all { setSigningConfig(signingConfig) }
+  }
 }

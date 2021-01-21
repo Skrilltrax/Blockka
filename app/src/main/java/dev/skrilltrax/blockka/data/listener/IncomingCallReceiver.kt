@@ -19,7 +19,11 @@ import dev.skrilltrax.blockka.data.repo.ContactRepository
 import dev.skrilltrax.blockka.data.repo.RecentRepository
 import dev.skrilltrax.blockka.ui.MainActivity
 import dev.skrilltrax.sqldelight.Contact
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -115,7 +119,7 @@ class IncomingCallReceiver : BroadcastReceiver() {
     previousState = TelephonyManager.CALL_STATE_IDLE
 
     return currentState == TelephonyManager.CALL_STATE_RINGING &&
-        previousState == TelephonyManager.CALL_STATE_IDLE
+      previousState == TelephonyManager.CALL_STATE_IDLE
   }
 
   private suspend fun rejectCall(contact: Contact) {
