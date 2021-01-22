@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/nav_graph"
+  app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="dev.skrilltrax.blockka.ui.fragment.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_recentFragment"
-            app:destination="@id/recentFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="dev.skrilltrax.blockka.ui.DetailFragment"
-        android:label="DetailFragment" />
-    <fragment
-        android:id="@+id/recentFragment"
-        android:name="dev.skrilltrax.blockka.ui.fragment.RecentFragment"
-        android:label="RecentFragment"
-        tools:layout="@layout/fragment_recent" />
+  <fragment
+    android:id="@+id/homeFragment"
+    android:name="dev.skrilltrax.blockka.ui.fragment.HomeFragment"
+    android:label="HomeFragment"
+    tools:layout="@layout/fragment_home">
+    <action
+      android:id="@+id/action_homeFragment_to_detailFragment"
+      app:destination="@id/detailFragment" />
+    <action
+      android:id="@+id/action_homeFragment_to_recentFragment"
+      app:destination="@id/recentFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/detailFragment"
+    android:name="dev.skrilltrax.blockka.ui.DetailFragment"
+    android:label="DetailFragment" />
+  <fragment
+    android:id="@+id/recentFragment"
+    android:name="dev.skrilltrax.blockka.ui.fragment.RecentFragment"
+    android:label="RecentFragment"
+    tools:layout="@layout/fragment_recent" />
 </navigation>
