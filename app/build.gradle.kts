@@ -29,7 +29,10 @@ dependencies {
   implementation(Dependencies.AndroidX.recyclerviewSelection)
 
   implementation(Dependencies.AndroidX.Compose.compiler)
+  implementation(Dependencies.AndroidX.Compose.material)
   implementation(Dependencies.AndroidX.Compose.runtime)
+  implementation(Dependencies.AndroidX.Compose.ui)
+  implementation(Dependencies.AndroidX.Compose.uiTooling)
 
   implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
   implementation(Dependencies.AndroidX.Lifecycle.process)

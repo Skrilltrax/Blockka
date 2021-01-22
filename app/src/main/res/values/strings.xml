@@ -8,4 +8,5 @@
   <string name="enter_contact_details">Enter Contact Details</string>
   <string name="all_contacts">All Contacts</string>
   <string name="recent_contacts">Recent Contacts</string>
+  <string name="title_activity_home">Home</string>
 </resources>

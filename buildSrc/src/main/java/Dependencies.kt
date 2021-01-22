@@ -49,7 +49,7 @@ object Dependencies {
       const val runtime = "androidx.compose.runtime:runtime:$COMPOSE_VERSION"
       const val ui = "androidx.compose.ui:ui:$COMPOSE_VERSION"
       const val uiUnit = "androidx.compose.ui:ui-unit:$COMPOSE_VERSION"
-      const val uiTooling = "androidx.ui:ui-tooling:$COMPOSE_VERSION"
+      const val uiTooling = "androidx.compose.ui:ui-tooling:$COMPOSE_VERSION"
     }
 
     object Hilt {

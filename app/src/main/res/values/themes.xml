@@ -28,4 +28,13 @@
     <item name="boxStrokeColor">@color/textinputlayout_border_selector</item>
     <item name="hintTextColor">@color/secondary_color</item>
   </style>
+
+  <style name="Theme.Blockka.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
+  <style name="Theme.Blockka.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+  <style name="Theme.Blockka.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

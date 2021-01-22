@@ -39,8 +39,9 @@ internal fun Project.configureForAllProjects() {
   }
   tasks.withType<KotlinCompile> {
     kotlinOptions {
-      jvmTarget = JavaVersion.VERSION_1_8.toString()
       freeCompilerArgs = freeCompilerArgs + additionalCompilerArgs
+      useIR = true
+      jvmTarget = JavaVersion.VERSION_1_8.toString()
       languageVersion = "1.4"
     }
   }
