@@ -21,6 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 
 @Composable
@@ -34,10 +37,18 @@ fun BlockkaApp() {
         floatingActionButton = { FAB() },
         isFloatingActionButtonDocked = true,
         floatingActionButtonPosition = FabPosition.End,
-      ) {
-
-      }
+        bodyContent = {}
+      )
     }
+  }
+}
+
+@Composable
+fun Body() {
+  val navController = rememberNavController()
+  NavHost(navController = navController, startDestination = "home") {
+    composable("blocked") { BlockedContactsList() }
+    composable("recent") { RecentContactsList() }
   }
 }
 
@@ -70,7 +81,6 @@ fun BottomDrawer() {
     IconButton(onClick = { /* doSomething() */ }) {
       Icon(Icons.Filled.Menu)
     }
-    // The actions should be at the end of the BottomAppBar
   }
 }
 
