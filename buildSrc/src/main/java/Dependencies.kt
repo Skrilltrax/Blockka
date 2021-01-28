@@ -1,5 +1,5 @@
-private const val AGP_VERSION = "7.0.0-alpha04"
-private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha02"
+private const val AGP_VERSION = "7.0.0-alpha05"
+private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha03"
 private const val DAGGER_HILT_VERSION = "2.31.2-alpha"
 private const val KOTLIN_VERSION = "1.4.21"
 private const val SQLDELIGHT_VERSION = "1.4.4"
@@ -31,9 +31,9 @@ object Dependencies {
     const val activityKtx = "androidx.activity:activity-ktx:1.2.0-rc01"
     const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-beta01"
-    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-rc01"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-rc02"
     const val material = "com.google.android.material:material:1.3.0-rc01"
-    const val recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
+    const val recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0"
 
     object Compose {
 
@@ -67,7 +67,7 @@ object Dependencies {
 
     object Navigation {
 
-      private const val version = "2.3.2"
+      private const val version = "2.3.3"
       const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
       const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
     }
