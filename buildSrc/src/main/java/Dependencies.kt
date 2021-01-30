@@ -45,6 +45,8 @@ object Dependencies {
       const val foundation = "androidx.compose.foundation:foundation:$COMPOSE_VERSION"
       const val foundationLayout = "androidx.compose.foundation:foundation-layout:$COMPOSE_VERSION"
       const val material = "androidx.compose.material:material:$COMPOSE_VERSION"
+      const val materialIconsCore = "androidx.compose.material:material-icons-core:$COMPOSE_VERSION"
+      const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$COMPOSE_VERSION"
       const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha02"
       const val runtime = "androidx.compose.runtime:runtime:$COMPOSE_VERSION"
       const val ui = "androidx.compose.ui:ui:$COMPOSE_VERSION"
