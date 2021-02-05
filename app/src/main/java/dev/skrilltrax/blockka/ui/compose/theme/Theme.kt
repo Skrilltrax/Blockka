@@ -25,12 +25,11 @@ private val LightColorPalette = lightColors(
   surface = primaryLight,
   onSurface = Color.Black,
   secondaryVariant = secondaryDark,
-  onBackground = Color.Black
-
+  onBackground = Color.Black,
 )
 
 @Composable
-fun BlockkaTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun BlockkaTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
   val colors = if (darkTheme) {
     DarkColorPalette
   } else {

@@ -8,7 +8,7 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
@@ -36,22 +36,27 @@ import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 @Composable
 fun BlockkaApp() {
   val navController = rememberNavController()
+  val modalBottomSheetState =
+    rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
 
   BlockkaTheme {
     // A surface container using the 'background' color from the theme
     Surface(color = MaterialTheme.colors.background) {
-      NavigationModalSheet {
-        BlockkaScreen(navController = navController)
+      NavigationModalSheet(
+        navController = navController,
+        modalBottomSheetState = modalBottomSheetState
+      ) {
+        BlockkaScreen(navController = navController, modalBottomSheetState = modalBottomSheetState)
       }
     }
   }
 }
 
 @Composable
-fun BlockkaScreen(navController: NavHostController) {
+fun BlockkaScreen(navController: NavHostController, modalBottomSheetState: ModalBottomSheetState) {
   Scaffold(
     topBar = { TopBar(navController) },
-    bottomBar = { BottomDrawer() },
+    bottomBar = { BottomDrawer(modalBottomSheetState) },
     floatingActionButton = { FAB() },
     isFloatingActionButtonDocked = true,
     floatingActionButtonPosition = FabPosition.End,
@@ -98,23 +103,14 @@ fun FAB() {
 }
 
 @Composable
-fun BottomDrawer() {
+fun BottomDrawer(modalBottomSheetState: ModalBottomSheetState) {
   BottomAppBar(cutoutShape = CircleShape) {
-    IconButton(onClick = {}) {
+    IconButton(onClick = { modalBottomSheetState.show() }) {
       Icon(Icons.Filled.Menu)
     }
   }
 }
 
-@Composable
-fun NavigationModalSheet(content: @Composable () -> Unit) {
-  val modalBottomSheetState =
-    rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
-  ModalBottomSheetLayout(
-    sheetContent = {},
-    content = { content() }
-  )
-}
 
 @Composable
 @Preview
