@@ -1,9 +1,7 @@
 package dev.skrilltrax.blockka.ui.compose
 
-import androidx.compose.foundation.AmbientIndication
 import androidx.compose.foundation.Interaction
 import androidx.compose.foundation.InteractionState
-import androidx.compose.foundation.indication
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,23 +16,23 @@ import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 
 @Composable
 fun NavigationModalSheet(
-  navController: NavHostController,
+  currentDestination: Destination,
   modalBottomSheetState: ModalBottomSheetState,
-  content: @Composable () -> Unit
+  onNavigationItemSelected: (Destination) -> Unit = {},
+  content: @Composable () -> Unit,
 ) {
 
   ModalBottomSheetLayout(
-    sheetContent = { NavigationSheetContent(navController) },
+    sheetContent = { NavigationSheetContent(currentDestination, onNavigationItemSelected) },
     sheetState = modalBottomSheetState,
     sheetShape = RoundedCornerShape(topLeft = 24.dp, topRight = 24.dp),
     sheetContentColor = MaterialTheme.colors.secondary,
@@ -43,29 +41,39 @@ fun NavigationModalSheet(
 }
 
 @Composable
-fun NavigationSheetContent(navController: NavHostController) {
+fun NavigationSheetContent(
+  currentDestination: Destination,
+  onNavigationItemSelected: (Destination) -> Unit = {},
+) {
   Column(
     modifier = Modifier
       .fillMaxWidth()
       .padding(horizontal = 16.dp, vertical = 24.dp)
   ) {
-    Destination.values().forEach {
-      NavigationSheetItem(icon = it.icon, text = it.displayName, isSelected = true)
+    Destination.values().forEachIndexed { pos, destination ->
+      NavigationSheetItem(
+        destination = destination,
+        isSelected = destination == currentDestination,
+        modifier = if (pos == 0) Modifier else Modifier.padding(top = 8.dp),
+        onNavigationItemSelected = onNavigationItemSelected,
+      )
     }
   }
 }
 
 @Composable
 fun NavigationSheetItem(
-  icon: ImageVector,
-  text: String,
+  destination: Destination,
   isSelected: Boolean,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  onNavigationItemSelected: (Destination) -> Unit = {},
 ) {
-  val interactionState = InteractionState().apply {
-    if (isSelected) {
-      addInteraction(Interaction.Pressed, Offset.Zero)
-    }
+  val interactionState = remember { InteractionState() }
+
+  if (isSelected) {
+    interactionState.addInteraction(Interaction.Pressed, Offset.Zero)
+  } else {
+    interactionState.removeInteraction(Interaction.Pressed)
   }
 
   Surface(
@@ -75,24 +83,22 @@ fun NavigationSheetItem(
     elevation = 0.dp,
   ) {
     Row(
-      modifier = Modifier
+      modifier = modifier
         .fillMaxWidth()
         .selectable(
           selected = isSelected,
-          onClick = { /*TODO*/ },
-          interactionState = InteractionState()
+          onClick = { onNavigationItemSelected(destination) },
+          interactionState = interactionState,
         )
-        .indication(interactionState, AmbientIndication.current())
         .preferredHeight(48.dp)
         .padding(horizontal = 8.dp),
       verticalAlignment = Alignment.CenterVertically,
     ) {
-      Icon(imageVector = icon)
+      Icon(imageVector = destination.icon)
       Text(
-        text = text,
+        text = destination.displayName.toUpperCase(),
         modifier = Modifier
-          .padding(start = 16.dp)
-          .fillMaxWidth(),
+          .padding(start = 16.dp),
         style = MaterialTheme.typography.button
       )
     }

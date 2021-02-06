@@ -30,6 +30,8 @@ import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.popUpTo
 import androidx.navigation.compose.rememberNavController
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 
@@ -39,12 +41,26 @@ fun BlockkaApp() {
   val modalBottomSheetState =
     rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
 
+  val navBackStackEntry by navController.currentBackStackEntryAsState()
+  val route = navBackStackEntry?.arguments?.get(KEY_ROUTE) ?: Destination.startDestination.route
+  check(route is String) { "route received from navBackStackEntry is not a string" }
+
+  val currentDestination = Destination.getDestinationFromRoute(route)
+
   BlockkaTheme {
     // A surface container using the 'background' color from the theme
     Surface(color = MaterialTheme.colors.background) {
       NavigationModalSheet(
-        navController = navController,
-        modalBottomSheetState = modalBottomSheetState
+        currentDestination = currentDestination,
+        modalBottomSheetState = modalBottomSheetState,
+        onNavigationItemSelected = {
+          navController.navigate(it.route) {
+            launchSingleTop = true
+            popUpTo(Destination.startDestination.route) {
+              inclusive = false
+            }
+          }
+        },
       ) {
         BlockkaScreen(navController = navController, modalBottomSheetState = modalBottomSheetState)
       }
