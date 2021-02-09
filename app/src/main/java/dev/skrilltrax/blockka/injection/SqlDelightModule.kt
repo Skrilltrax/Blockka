@@ -6,15 +6,15 @@ import com.squareup.sqldelight.db.SqlDriver
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import dev.skrilltrax.blockka.model.BlockkaDatabase
 import dev.skrilltrax.blockka.model.BlockkaDatabase.Companion.Schema
 import dev.skrilltrax.sqldelight.ContactQueries
 import dev.skrilltrax.sqldelight.RecentContactQueries
 import javax.inject.Singleton
 
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 object SqlDelightModule {
 
