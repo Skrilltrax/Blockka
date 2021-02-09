@@ -1,6 +1,6 @@
 private const val AGP_VERSION = "7.0.0-alpha05"
 private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha03"
-private const val DAGGER_HILT_VERSION = "2.31.2-alpha"
+private const val DAGGER_HILT_VERSION = "2.32-alpha"
 private const val KOTLIN_VERSION = "1.4.21"
 private const val SQLDELIGHT_VERSION = "1.4.4"
 
@@ -14,7 +14,7 @@ object Plugins {
 
 
 object Dependencies {
-  const val COMPOSE_VERSION = "1.0.0-alpha10"
+  const val COMPOSE_VERSION = "1.0.0-alpha11"
 
   object Kotlin {
 
@@ -32,7 +32,7 @@ object Dependencies {
     const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-beta01"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-rc02"
-    const val material = "com.google.android.material:material:1.3.0-rc01"
+    const val material = "com.google.android.material:material:1.3.0"
     const val recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0"
 
     object Compose {
@@ -96,13 +96,13 @@ object Dependencies {
 
     object AndroidX {
 
-      private const val version = "1.3.1-alpha03"
+      private const val version = "1.4.0-alpha04"
       const val runner = "androidx.test:runner:$version"
       const val rules = "androidx.test:rules:$version"
 
       object Ext {
 
-        private const val version = "1.1.3-alpha03"
+        private const val version = "1.1.3-alpha04"
         const val junit = "androidx.test.ext:junit:$version"
       }
 

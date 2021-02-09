@@ -1,6 +1,6 @@
 rootProject.ext.versions = [
   agp       : '7.0.0-alpha05',
-  hilt      : '2.31.2-alpha',
+  hilt      : '2.32-alpha',
   kotlin    : '1.4.21',
   lint      : '27.3.0-alpha04',
   sqlDelight: '1.4.4',
