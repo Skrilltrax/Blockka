@@ -10,25 +10,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
-
 import dev.skrilltrax.blockka.R
 
-class AddContactFragment : BottomSheetDialogFragment() {
+class AddContactFragment : BaseBottomSheetDialogFragment() {
 
   private var behavior: BottomSheetBehavior<FrameLayout>? = null
-  private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
-    override fun onSlide(bottomSheet: View, slideOffset: Float) {
-    }
-
-    override fun onStateChanged(bottomSheet: View, newState: Int) {
-      if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-        dismiss()
-      }
-    }
-  }
-
   private lateinit var addManually: MaterialButton
   private lateinit var addFromContacts: MaterialButton
 
@@ -41,7 +28,7 @@ class AddContactFragment : BottomSheetDialogFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.fragment_add_contact, container, false)
+    return inflater.inflate(R.layout.fragment_add_contact, container, true)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -10,26 +10,13 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
-
 import dev.skrilltrax.blockka.R
 import dev.skrilltrax.blockka.ui.ListType
 
-class NavigationSheetFragment(private val listType: ListType) : BottomSheetDialogFragment() {
+class NavigationSheetFragment(private val listType: ListType) : BaseBottomSheetDialogFragment() {
 
   private var behavior: BottomSheetBehavior<FrameLayout>? = null
-  private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
-    override fun onSlide(bottomSheet: View, slideOffset: Float) {
-    }
-
-    override fun onStateChanged(bottomSheet: View, newState: Int) {
-      if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-        dismiss()
-      }
-    }
-  }
-
   private lateinit var allContacts: MaterialButton
   private lateinit var recentContacts: MaterialButton
 
@@ -42,7 +29,7 @@ class NavigationSheetFragment(private val listType: ListType) : BottomSheetDialo
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.fragment_navigation_sheet, container, false)
+    return inflater.inflate(R.layout.fragment_navigation_sheet, container, true)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

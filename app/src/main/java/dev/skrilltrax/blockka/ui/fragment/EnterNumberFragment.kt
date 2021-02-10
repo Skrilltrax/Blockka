@@ -10,29 +10,16 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-
 import dev.skrilltrax.blockka.R
 import dev.skrilltrax.blockka.databinding.FragmentEnterNumberBinding
 import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 
 @AndroidEntryPoint
-class EnterNumberFragment : BottomSheetDialogFragment() {
+class EnterNumberFragment : BaseBottomSheetDialogFragment() {
 
   private var behavior: BottomSheetBehavior<FrameLayout>? = null
-  private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
-    override fun onSlide(bottomSheet: View, slideOffset: Float) {
-    }
-
-    override fun onStateChanged(bottomSheet: View, newState: Int) {
-      if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-        dismiss()
-      }
-    }
-  }
-
-  private val viewmodel: ContactViewModel by activityViewModels()
+  private val viewModel: ContactViewModel by activityViewModels()
   private lateinit var binding: FragmentEnterNumberBinding
 
   override fun getTheme(): Int {
@@ -43,8 +30,8 @@ class EnterNumberFragment : BottomSheetDialogFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
-    binding = FragmentEnterNumberBinding.inflate(layoutInflater)
+  ): View {
+    binding = FragmentEnterNumberBinding.inflate(layoutInflater, container, true)
     return binding.root
   }
 
@@ -87,9 +74,9 @@ class EnterNumberFragment : BottomSheetDialogFragment() {
 
         val name = tietName.text
         if (name.isNullOrEmpty()) {
-          viewmodel.addContact(number.toString())
+          viewModel.addContact(number.toString())
         } else {
-          viewmodel.addContact(number.toString(), name.toString())
+          viewModel.addContact(number.toString(), name.toString())
         }
         dismiss()
       }

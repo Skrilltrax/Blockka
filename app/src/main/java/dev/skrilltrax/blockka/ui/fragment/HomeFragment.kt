@@ -1,7 +1,11 @@
 package dev.skrilltrax.blockka.ui.fragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,7 +23,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-  private val viewmodel: ContactViewModel by activityViewModels()
+  private val viewModel: ContactViewModel by activityViewModels()
   private val activity by lazy(LazyThreadSafetyMode.NONE) { (requireActivity() as MainActivity) }
   private lateinit var binding: FragmentHomeBinding
   private var actionMode: ActionMode? = null
@@ -37,7 +41,7 @@ class HomeFragment : Fragment() {
     override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
       when (item?.itemId) {
         R.id.delete -> {
-          viewmodel.deleteContacts((binding.recyclerview.adapter as ContactListAdapter).selectedContacts)
+          viewModel.deleteContacts((binding.recyclerview.adapter as ContactListAdapter).selectedContacts)
           mode?.finish()
         }
       }
@@ -57,7 +61,7 @@ class HomeFragment : Fragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     binding = FragmentHomeBinding.inflate(layoutInflater)
     return binding.root
   }
@@ -75,7 +79,7 @@ class HomeFragment : Fragment() {
     }
 
     lifecycleScope.launchWhenResumed {
-      viewmodel.getAllContacts().collect {
+      viewModel.getAllContacts().collect {
         Timber.d(it.toString())
         (binding.recyclerview.adapter as ContactListAdapter).updateList(it)
       }
