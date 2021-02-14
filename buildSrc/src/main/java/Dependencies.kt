@@ -1,12 +1,16 @@
-private const val AGP_VERSION = "7.0.0-alpha05"
+private const val AGP_VERSION = "7.0.0-alpha06"
 private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha03"
 private const val DAGGER_HILT_VERSION = "2.32-alpha"
 private const val KOTLIN_VERSION = "1.4.21-2"
 private const val SQLDELIGHT_VERSION = "1.4.4"
+private const val LINT_VERSION = "27.3.0-alpha04"
 
 object Plugins {
 
   const val agp = "com.android.tools.build:gradle:$AGP_VERSION"
+  const val agpBuilder = "com.android.tools.build:builder:$AGP_VERSION"
+  const val agpBuilderModel = "com.android.tools.build:builder-model:$AGP_VERSION"
+  const val agpLintModel = "com.android.tools.lint:lint-model:$LINT_VERSION"
   const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
   const val hilt = "com.google.dagger:hilt-android-gradle-plugin:$DAGGER_HILT_VERSION"
   const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:$SQLDELIGHT_VERSION"

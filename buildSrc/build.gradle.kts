@@ -1,6 +1,3 @@
-apply(from = "buildDependencies.gradle")
-val build: Map<Any, Any> by extra
-
 plugins {
   `kotlin-dsl`
 }
@@ -27,11 +24,11 @@ gradlePlugin {
 }
 
 dependencies {
-  implementation(build.getValue("androidGradlePlugin"))
-  implementation(build.getValue("androidGradlePlugin_builder"))
-  implementation(build.getValue("androidGradlePlugin_builderModel"))
-  implementation(build.getValue("androidGradlePlugin_lintModel"))
-  implementation(build.getValue("hiltGradlePlugin"))
-  implementation(build.getValue("kotlinGradlePlugin"))
-  implementation(build.getValue("sqlDelightGradlePlugin"))
+  implementation(Plugins.agp)
+  implementation(Plugins.agpBuilder)
+  implementation(Plugins.agpBuilderModel)
+  implementation(Plugins.agpLintModel)
+  implementation(Plugins.hilt)
+  implementation(Plugins.kotlin)
+  implementation(Plugins.sqlDelight)
 }
