@@ -1,7 +1,7 @@
 private const val AGP_VERSION = "7.0.0-alpha06"
 private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha03"
 private const val DAGGER_HILT_VERSION = "2.32-alpha"
-private const val KOTLIN_VERSION = "1.4.21-2"
+private const val KOTLIN_VERSION = "1.4.30"
 private const val SQLDELIGHT_VERSION = "1.4.4"
 private const val LINT_VERSION = "27.3.0-alpha04"
 
@@ -18,7 +18,7 @@ object Plugins {
 
 
 object Dependencies {
-  const val COMPOSE_VERSION = "1.0.0-alpha11"
+  const val COMPOSE_VERSION = "1.0.0-alpha12"
 
   object Kotlin {
 
@@ -32,10 +32,10 @@ object Dependencies {
 
   object AndroidX {
 
-    const val activityKtx = "androidx.activity:activity-ktx:1.2.0-rc01"
+    const val activityKtx = "androidx.activity:activity-ktx:1.3.0-alpha02"
     const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-beta01"
-    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-rc02"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
     const val material = "com.google.android.material:material:1.3.0"
     const val recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0"
 
@@ -62,7 +62,7 @@ object Dependencies {
 
     object Lifecycle {
 
-      private const val version = "2.3.0-rc01"
+      private const val version = "2.3.0"
       const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
       const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
       const val process = "androidx.lifecycle:lifecycle-process:$version"
@@ -95,7 +95,7 @@ object Dependencies {
   object Testing {
 
     const val daggerHilt = "com.google.dagger:hilt-android-testing:$DAGGER_HILT_VERSION"
-    const val junit = "junit:junit:4.13.1"
+    const val junit = "junit:junit:4.13.2"
     const val uiTest = "androidx.ui:ui-test:$COMPOSE_VERSION"
 
     object AndroidX {
