@@ -120,10 +120,12 @@ internal fun TestedExtension.configureCommonAndroidOptions() {
   }
 
   packagingOptions {
-    exclude("**/*.version")
-    exclude("**/*.txt")
-    exclude("**/*.kotlin_module")
-    exclude("**/plugin.properties")
+    resources {
+      excludes.add("**/*.version")
+      excludes.add("**/*.txt")
+      excludes.add("**/*.kotlin_module")
+      excludes.add("**/plugin.properties")
+    }
   }
 
   compileOptions {
