@@ -46,6 +46,14 @@ fun BlockkaApp() {
   check(route is String) { "route received from navBackStackEntry is not a string" }
 
   val currentDestination = Destination.getDestinationFromRoute(route)
+  val onNavigationItemSelected: (Destination) -> Unit = {
+    navController.navigate(it.route) {
+      launchSingleTop = true
+      popUpTo(Destination.startDestination.route) {
+        inclusive = false
+      }
+    }
+  }
 
   BlockkaTheme {
     // A surface container using the 'background' color from the theme
@@ -53,14 +61,7 @@ fun BlockkaApp() {
       NavigationModalSheet(
         currentDestination = currentDestination,
         modalBottomSheetState = modalBottomSheetState,
-        onNavigationItemSelected = {
-          navController.navigate(it.route) {
-            launchSingleTop = true
-            popUpTo(Destination.startDestination.route) {
-              inclusive = false
-            }
-          }
-        },
+        onNavigationItemSelected = onNavigationItemSelected,
       ) {
         BlockkaScreen(navController = navController, modalBottomSheetState = modalBottomSheetState)
       }
@@ -114,7 +115,7 @@ fun TopBar(
 @Composable
 fun FAB() {
   FloatingActionButton(onClick = { /*TODO*/ }) {
-      Icon(Icons.Filled.Add)
+    Icon(Icons.Filled.Add, contentDescription = "Add Contact")
   }
 }
 
@@ -122,7 +123,7 @@ fun FAB() {
 fun BottomDrawer(modalBottomSheetState: ModalBottomSheetState) {
   BottomAppBar(cutoutShape = CircleShape) {
     IconButton(onClick = { modalBottomSheetState.show() }) {
-      Icon(Icons.Filled.Menu)
+      Icon(Icons.Filled.Menu, contentDescription = "Menu Button")
     }
   }
 }
