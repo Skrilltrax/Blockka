@@ -21,6 +21,7 @@ android {
 
 dependencies {
 
+  implementation(Dependencies.AndroidX.activityCompose)
   implementation(Dependencies.AndroidX.activityKtx)
   implementation(Dependencies.AndroidX.appCompat)
   implementation(Dependencies.AndroidX.coreKtx)

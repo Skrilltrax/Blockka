@@ -33,6 +33,7 @@ object Dependencies {
   object AndroidX {
 
     const val activityKtx = "androidx.activity:activity-ktx:1.3.0-alpha03"
+    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha01"
     const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
@@ -47,7 +48,6 @@ object Dependencies {
       const val material = "androidx.compose.material:material:$COMPOSE_VERSION"
       const val materialIconsCore = "androidx.compose.material:material-icons-core:$COMPOSE_VERSION"
       const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$COMPOSE_VERSION"
-      const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha02"
       const val runtime = "androidx.compose.runtime:runtime:$COMPOSE_VERSION"
       const val ui = "androidx.compose.ui:ui:$COMPOSE_VERSION"
       const val uiUnit = "androidx.compose.ui:ui-unit:$COMPOSE_VERSION"
@@ -76,7 +76,7 @@ object Dependencies {
       private const val version = "2.3.3"
       const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
       const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
-      const val compose = "androidx.navigation:navigation-compose:1.0.0-alpha05"
+      const val compose = "androidx.navigation:navigation-compose:1.0.0-alpha07"
     }
   }
 
