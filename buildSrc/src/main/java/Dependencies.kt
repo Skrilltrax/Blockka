@@ -33,7 +33,7 @@ object Dependencies {
   object AndroidX {
 
     const val activityKtx = "androidx.activity:activity-ktx:1.3.0-alpha03"
-    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha01"
+    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha02"
     const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
@@ -82,7 +82,7 @@ object Dependencies {
 
   object ThirdParty {
 
-    const val accompanist = "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
+    const val accompanist = "dev.chrisbanes.accompanist:accompanist-coil:0.5.1"
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val coil = "io.coil-kt:coil:1.1.1"
 
