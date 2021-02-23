@@ -2,6 +2,7 @@ package dev.skrilltrax.blockka.ui.compose
 
 import androidx.compose.foundation.Interaction
 import androidx.compose.foundation.InteractionState
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,6 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.intl.Locale
+import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -34,7 +37,7 @@ fun NavigationModalSheet(
   ModalBottomSheetLayout(
     sheetContent = { NavigationSheetContent(currentDestination, onNavigationItemSelected) },
     sheetState = modalBottomSheetState,
-    sheetShape = RoundedCornerShape(topLeft = 24.dp, topRight = 24.dp),
+    sheetShape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
     sheetContentColor = MaterialTheme.colors.secondary,
     content = { content() },
   )
@@ -89,14 +92,15 @@ fun NavigationSheetItem(
           selected = isSelected,
           onClick = { onNavigationItemSelected(destination) },
           interactionState = interactionState,
+          indication = LocalIndication.current,
         )
         .preferredHeight(48.dp)
         .padding(horizontal = 8.dp),
       verticalAlignment = Alignment.CenterVertically,
     ) {
-      Icon(imageVector = destination.icon)
+      Icon(imageVector = destination.icon, contentDescription = null)
       Text(
-        text = destination.displayName.toUpperCase(),
+        text = destination.displayName.toUpperCase(Locale.current),
         modifier = Modifier
           .padding(start = 16.dp),
         style = MaterialTheme.typography.button
