@@ -1,4 +1,4 @@
-private const val AGP_VERSION = "7.0.0-alpha07"
+private const val AGP_VERSION = "7.0.0-alpha08"
 private const val ANDROIDX_HILT_VERSION = "1.0.0-alpha03"
 private const val DAGGER_HILT_VERSION = "2.32-alpha"
 private const val KOTLIN_VERSION = "1.4.30"
@@ -18,7 +18,7 @@ object Plugins {
 
 
 object Dependencies {
-  const val COMPOSE_VERSION = "1.0.0-alpha12"
+  const val COMPOSE_VERSION = "1.0.0-beta01"
 
   object Kotlin {
 
@@ -32,11 +32,11 @@ object Dependencies {
 
   object AndroidX {
 
-    const val activityKtx = "androidx.activity:activity-ktx:1.3.0-alpha02"
+    const val activityKtx = "androidx.activity:activity-ktx:1.3.0-alpha03"
     const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
-    const val coreKtx = "androidx.core:core-ktx:1.5.0-beta01"
+    const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
-    const val material = "com.google.android.material:material:1.3.0"
+    const val material = "com.google.android.material:material:1.4.0-alpha01"
     const val recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0"
 
     object Compose {
