@@ -60,6 +60,7 @@ object Dependencies {
       const val daggerHiltCompiler = "androidx.hilt:hilt-compiler:$ANDROIDX_HILT_VERSION"
       const val hiltLifecycleViewmodel =
         "androidx.hilt:hilt-lifecycle-viewmodel:$ANDROIDX_HILT_VERSION"
+      const val hiltNavigation = "androidx.hilt:hilt-navigation:$ANDROIDX_HILT_VERSION"
     }
 
     object Lifecycle {

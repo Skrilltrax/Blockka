@@ -48,6 +48,7 @@ dependencies {
 
   implementation(Dependencies.AndroidX.Hilt.dagger)
   implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewmodel)
+  implementation(Dependencies.AndroidX.Hilt.hiltNavigation)
 
   implementation(Dependencies.ThirdParty.accompanist)
   implementation(Dependencies.ThirdParty.coil)
