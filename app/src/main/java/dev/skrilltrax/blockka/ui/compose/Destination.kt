@@ -16,7 +16,7 @@ enum class Destination(val route: String, @StringRes val displayName: Int, val i
     val startDestination = Blocked
 
     fun getDestinationFromRoute(route: String): Destination {
-      Destination.values().forEach { destination ->
+      values().forEach { destination ->
         if (destination.route == route) return destination
       }
 

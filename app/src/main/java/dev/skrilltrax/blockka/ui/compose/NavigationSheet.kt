@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
+import java.util.Locale
 
 @Composable
 fun NavigationModalSheet(
@@ -69,7 +70,7 @@ fun NavigationSheetContent(
 fun NavigationSheetItem(
   destination: Destination,
   isSelected: Boolean,
-  onNavigationItemSelected: (Destination) -> Unit = {},
+  onNavigationItemSelected: (Destination) -> Unit,
 ) {
   val interactionSource = remember { MutableInteractionSource() }
   val pressInteraction = remember { PressInteraction.Press(Offset.Zero) }
@@ -81,7 +82,7 @@ fun NavigationSheetItem(
   }
 
   NavigationSheetItemUI(
-    text = stringResource(id = destination.displayName).toUpperCase(),
+    text = stringResource(id = destination.displayName).toUpperCase(Locale.getDefault()),
     icon = destination.icon,
     interactionSource = interactionSource,
     onItemClicked = { onNavigationItemSelected(destination) }
@@ -89,7 +90,7 @@ fun NavigationSheetItem(
 }
 
 @Composable
-fun NavigationSheetItemUI(
+private fun NavigationSheetItemUI(
   text: String,
   icon: ImageVector,
   surfaceColor: Color = Color.Transparent,
