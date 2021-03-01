@@ -20,11 +20,13 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.NavHost
@@ -34,10 +36,15 @@ import androidx.navigation.compose.navigate
 import androidx.navigation.compose.popUpTo
 import androidx.navigation.compose.rememberNavController
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
+import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun BlockkaApp() {
   val navController = rememberNavController()
+  val contactViewModel: ContactViewModel = viewModel()
+  contactViewModel.getAllContacts()
+
   val modalBottomSheetState =
     rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
 
@@ -47,10 +54,12 @@ fun BlockkaApp() {
 
   val currentDestination = Destination.getDestinationFromRoute(route)
   val onNavigationItemSelected: (Destination) -> Unit = {
-    navController.navigate(it.route) {
-      launchSingleTop = true
-      popUpTo(Destination.startDestination.route) {
-        inclusive = false
+    if (it != currentDestination) {
+      navController.navigate(it.route) {
+        launchSingleTop = true
+        popUpTo(Destination.startDestination.route) {
+          inclusive = false
+        }
       }
     }
   }
@@ -77,7 +86,7 @@ fun BlockkaScreen(navController: NavHostController, modalBottomSheetState: Modal
     floatingActionButton = { FAB() },
     isFloatingActionButtonDocked = true,
     floatingActionButtonPosition = FabPosition.End,
-    bodyContent = { Body(navController) },
+    content = { Body(navController) },
   )
 }
 
@@ -121,13 +130,13 @@ fun FAB() {
 
 @Composable
 fun BottomDrawer(modalBottomSheetState: ModalBottomSheetState) {
+  val coroutineScope = rememberCoroutineScope()
   BottomAppBar(cutoutShape = CircleShape) {
-    IconButton(onClick = { modalBottomSheetState.show() }) {
+    IconButton(onClick = { coroutineScope.launch { modalBottomSheetState.show() } }) {
       Icon(Icons.Filled.Menu, contentDescription = "Menu Button")
     }
   }
 }
-
 
 @Composable
 @Preview

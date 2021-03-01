@@ -1,19 +1,22 @@
 package dev.skrilltrax.blockka.ui.compose
 
-import androidx.compose.foundation.Interaction
-import androidx.compose.foundation.InteractionState
 import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +27,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 
 @Composable
 fun NavigationModalSheet(
@@ -57,8 +62,12 @@ fun NavigationSheetContent(
       NavigationSheetItem(
         destination = destination,
         isSelected = destination == currentDestination,
-        modifier = if (pos == 0) Modifier else Modifier.padding(top = 8.dp),
         onNavigationItemSelected = onNavigationItemSelected,
+      )
+      Spacer(
+        modifier = Modifier
+          .fillMaxWidth()
+          .height(8.dp)
       )
     }
   }
@@ -71,30 +80,33 @@ fun NavigationSheetItem(
   modifier: Modifier = Modifier,
   onNavigationItemSelected: (Destination) -> Unit = {},
 ) {
-  val interactionState = remember { InteractionState() }
+  val interactionSource = remember { MutableInteractionSource() }
+  val pressInteraction = remember { PressInteraction.Press(Offset.Zero) }
 
   if (isSelected) {
-    interactionState.addInteraction(Interaction.Pressed, Offset.Zero)
+    interactionSource.tryEmit(pressInteraction)
   } else {
-    interactionState.removeInteraction(Interaction.Pressed)
+    interactionSource.tryEmit(PressInteraction.Release(pressInteraction))
   }
 
   Surface(
     shape = MaterialTheme.shapes.small,
     color = Color.Transparent,
     contentColor = MaterialTheme.colors.secondaryVariant,
-    elevation = 0.dp,
+    modifier = Modifier.indication(
+      interactionSource = interactionSource,
+      indication = LocalIndication.current,
+    )
   ) {
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .selectable(
-          selected = isSelected,
+        .clickable(
           onClick = { onNavigationItemSelected(destination) },
-          interactionState = interactionState,
-          indication = LocalIndication.current,
+          interactionSource = MutableInteractionSource(),
+          indication = null
         )
-        .preferredHeight(48.dp)
+        .height(48.dp)
         .padding(horizontal = 8.dp),
       verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -105,5 +117,17 @@ fun NavigationSheetItem(
         style = MaterialTheme.typography.button
       )
     }
+  }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewNavigationSheet() {
+  BlockkaTheme {
+    NavigationModalSheet(
+      currentDestination = Destination.startDestination,
+      ModalBottomSheetState(ModalBottomSheetValue.HalfExpanded),
+      {},
+      {})
   }
 }

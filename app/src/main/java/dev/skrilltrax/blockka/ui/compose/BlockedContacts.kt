@@ -7,33 +7,25 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import dagger.hilt.android.internal.lifecycle.HiltViewModelFactory
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.skrilltrax.blockka.R
-import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import dev.skrilltrax.sqldelight.Contact
 
 @Composable
 fun BlockedContactsList() {
-  val contactViewModel by viewModel<ContactViewModel>(HiltViewModelFactory(LocalContext.current ))
-  val blockedContactList by contactViewModel.getAllContacts().collectAsState(initial = emptyList())
+//  val blockedContactList by contactViewModel.getAllContacts().collectAsState(initial = emptyList())
 
   LazyColumn {
-    items(blockedContactList) { contact ->
-      BlockedContact(contact = contact)
-    }
+//    items(blockedContactList) { contact ->
+//      BlockedContact(contact = contact)
+//    }
   }
 }
 

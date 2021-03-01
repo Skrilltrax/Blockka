@@ -40,14 +40,15 @@ dependencies {
   implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
   implementation(Dependencies.AndroidX.Lifecycle.process)
   implementation(Dependencies.AndroidX.Lifecycle.runtimeKtx)
-  implementation(Dependencies.AndroidX.Lifecycle.viewmodelKtx)
+  implementation(Dependencies.AndroidX.Lifecycle.viewModelCompose)
+  implementation(Dependencies.AndroidX.Lifecycle.viewModelKtx)
 
   implementation(Dependencies.AndroidX.Navigation.compose)
   implementation(Dependencies.AndroidX.Navigation.fragmentKtx)
   implementation(Dependencies.AndroidX.Navigation.uiKtx)
 
   implementation(Dependencies.AndroidX.Hilt.dagger)
-  implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewmodel)
+  implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewModel)
   implementation(Dependencies.AndroidX.Hilt.hiltNavigation)
 
   implementation(Dependencies.ThirdParty.accompanist)

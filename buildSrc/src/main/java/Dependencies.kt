@@ -58,7 +58,7 @@ object Dependencies {
       const val dagger = "com.google.dagger:hilt-android:$DAGGER_HILT_VERSION"
       const val daggerCompiler = "com.google.dagger:hilt-compiler:$DAGGER_HILT_VERSION"
       const val daggerHiltCompiler = "androidx.hilt:hilt-compiler:$ANDROIDX_HILT_VERSION"
-      const val hiltLifecycleViewmodel =
+      const val hiltLifecycleViewModel =
         "androidx.hilt:hilt-lifecycle-viewmodel:$ANDROIDX_HILT_VERSION"
       const val hiltNavigation = "androidx.hilt:hilt-navigation:$ANDROIDX_HILT_VERSION"
     }
@@ -69,7 +69,8 @@ object Dependencies {
       const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
       const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
       const val process = "androidx.lifecycle:lifecycle-process:$version"
-      const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+      const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+      const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha02"
     }
 
     object Navigation {
@@ -77,7 +78,7 @@ object Dependencies {
       private const val version = "2.3.3"
       const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
       const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
-      const val compose = "androidx.navigation:navigation-compose:1.0.0-alpha07"
+      const val compose = "androidx.navigation:navigation-compose:1.0.0-alpha08"
     }
   }
 
