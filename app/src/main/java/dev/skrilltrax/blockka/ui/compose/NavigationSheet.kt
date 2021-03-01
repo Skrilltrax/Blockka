@@ -101,8 +101,7 @@ fun NavigationSheetItem(
       Icon(imageVector = destination.icon, contentDescription = null)
       Text(
         text = destination.displayName.toUpperCase(Locale.current),
-        modifier = Modifier
-          .padding(start = 16.dp),
+        modifier = Modifier.padding(start = 16.dp),
         style = MaterialTheme.typography.button
       )
     }
