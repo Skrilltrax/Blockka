@@ -9,4 +9,5 @@
   <string name="all_contacts">All Contacts</string>
   <string name="recent_contacts">Recent Contacts</string>
   <string name="title_activity_home">Home</string>
+  <string name="blocked_contacts">Blocked Contacts</string>
 </resources>
