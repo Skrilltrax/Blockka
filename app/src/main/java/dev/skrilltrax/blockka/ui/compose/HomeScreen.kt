@@ -1,12 +1,7 @@
 package dev.skrilltrax.blockka.ui.compose
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.BottomAppBar
 import androidx.compose.material.FabPosition
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
@@ -14,9 +9,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,7 +28,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.popUpTo
 import androidx.navigation.compose.rememberNavController
-import dev.skrilltrax.blockka.R
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import kotlinx.coroutines.launch
@@ -91,11 +82,12 @@ fun BlockkaScreen(
   val onBottomDrawerClick: () -> Unit = {
     coroutineScope.launch { bottomDrawerSheetState.show() }
   }
+  val onFabClick: () -> Unit = {}
 
   Scaffold(
     topBar = { TopBar(currentDestination) },
-    bottomBar = { BottomDrawer(onBottomDrawerClick) },
-    floatingActionButton = { FAB() },
+    bottomBar = { BlockkaBottomDrawer(onBottomDrawerClick) },
+    floatingActionButton = { BlockkaFloatingActionButton(onFabClick) },
     isFloatingActionButtonDocked = true,
     floatingActionButtonPosition = FabPosition.End,
     content = { Body(navController) },
@@ -121,22 +113,6 @@ fun TopBar(currentDestination: Destination) {
         .align(Alignment.CenterVertically)
         .fillMaxWidth(),
     )
-  }
-}
-
-@Composable
-fun FAB() {
-  FloatingActionButton(onClick = { /*TODO*/ }) {
-    Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.add_contact))
-  }
-}
-
-@Composable
-fun BottomDrawer(onClick: () -> Unit) {
-  BottomAppBar(cutoutShape = CircleShape) {
-    IconButton(onClick = onClick) {
-      Icon(Icons.Filled.Menu, contentDescription = stringResource(R.string.menu_button))
-    }
   }
 }
 

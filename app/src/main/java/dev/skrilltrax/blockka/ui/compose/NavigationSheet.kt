@@ -85,7 +85,7 @@ fun NavigationSheetItem(
     text = stringResource(id = destination.displayName).toUpperCase(Locale.getDefault()),
     icon = destination.icon,
     interactionSource = interactionSource,
-    onItemClicked = { onNavigationItemSelected(destination) }
+    onClick = { onNavigationItemSelected(destination) }
   )
 }
 
@@ -96,7 +96,7 @@ private fun NavigationSheetItemUI(
   surfaceColor: Color = Color.Transparent,
   contentColor: Color = MaterialTheme.colors.secondaryVariant,
   interactionSource: InteractionSource = MutableInteractionSource(),
-  onItemClicked: () -> Unit = {},
+  onClick: () -> Unit = {},
 ) {
   val surfaceIndicatorModifier = Modifier
     .fillMaxWidth()
@@ -114,7 +114,7 @@ private fun NavigationSheetItemUI(
   ) {
     Row(
       modifier = Modifier.clickable(
-        onClick = onItemClicked,
+        onClick = onClick,
         interactionSource = MutableInteractionSource(),
         indication = null,
       ),
