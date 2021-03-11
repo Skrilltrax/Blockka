@@ -36,6 +36,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.popUpTo
 import androidx.navigation.compose.rememberNavController
+import dev.skrilltrax.blockka.R
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 import dev.skrilltrax.blockka.ui.viewmodel.ContactViewModel
 import kotlinx.coroutines.launch
@@ -43,11 +44,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun BlockkaApp() {
   val navController = rememberNavController()
+  val bottomDrawerSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
   val contactViewModel: ContactViewModel = viewModel()
-  contactViewModel.getAllContacts()
-
-  val modalBottomSheetState =
-    rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
 
   val navBackStackEntry by navController.currentBackStackEntryAsState()
   val route = navBackStackEntry?.arguments?.get(KEY_ROUTE) ?: Destination.startDestination.route
@@ -70,20 +68,33 @@ fun BlockkaApp() {
     Surface(color = MaterialTheme.colors.background) {
       NavigationModalSheet(
         currentDestination = currentDestination,
-        modalBottomSheetState = modalBottomSheetState,
+        modalBottomSheetState = bottomDrawerSheetState,
         onNavigationItemSelected = onNavigationItemSelected,
       ) {
-        BlockkaScreen(navController = navController, modalBottomSheetState = modalBottomSheetState)
+        BlockkaScreen(
+          currentDestination = currentDestination,
+          navController = navController,
+          bottomDrawerSheetState = bottomDrawerSheetState
+        )
       }
     }
   }
 }
 
 @Composable
-fun BlockkaScreen(navController: NavHostController, modalBottomSheetState: ModalBottomSheetState) {
+fun BlockkaScreen(
+  currentDestination: Destination,
+  navController: NavHostController,
+  bottomDrawerSheetState: ModalBottomSheetState
+) {
+  val coroutineScope = rememberCoroutineScope()
+  val onBottomDrawerClick: () -> Unit = {
+    coroutineScope.launch { bottomDrawerSheetState.show() }
+  }
+
   Scaffold(
-    topBar = { TopBar(navController) },
-    bottomBar = { BottomDrawer(modalBottomSheetState) },
+    topBar = { TopBar(currentDestination) },
+    bottomBar = { BottomDrawer(onBottomDrawerClick) },
     floatingActionButton = { FAB() },
     isFloatingActionButtonDocked = true,
     floatingActionButtonPosition = FabPosition.End,
@@ -92,9 +103,7 @@ fun BlockkaScreen(navController: NavHostController, modalBottomSheetState: Modal
 }
 
 @Composable
-fun Body(
-  navController: NavHostController,
-) {
+fun Body(navController: NavHostController) {
   NavHost(navController = navController, startDestination = Destination.startDestination.route) {
     composable(Destination.Blocked.route) { BlockedContactsList() }
     composable(Destination.Recent.route) { RecentContactsList() }
@@ -102,17 +111,10 @@ fun Body(
 }
 
 @Composable
-fun TopBar(
-  navController: NavHostController,
-) {
-  val navBackStackEntry by navController.currentBackStackEntryAsState()
-  val route = navBackStackEntry?.arguments?.get(KEY_ROUTE) ?: Destination.startDestination.route
-  check(route is String) { "route received from navBackStackEntry is not a string" }
-  val destination = Destination.getDestinationFromRoute(route)
-
-  TopAppBar(elevation = 0.dp) {
+fun TopBar(currentDestination: Destination) {
+  TopAppBar(elevation = 0.dp, backgroundColor = MaterialTheme.colors.background) {
     Text(
-      text = stringResource(id = destination.displayName),
+      text = stringResource(currentDestination.displayName),
       textAlign = TextAlign.Center,
       style = MaterialTheme.typography.h6,
       modifier = Modifier
@@ -125,16 +127,15 @@ fun TopBar(
 @Composable
 fun FAB() {
   FloatingActionButton(onClick = { /*TODO*/ }) {
-    Icon(Icons.Filled.Add, contentDescription = "Add Contact")
+    Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.add_contact))
   }
 }
 
 @Composable
-fun BottomDrawer(modalBottomSheetState: ModalBottomSheetState) {
-  val coroutineScope = rememberCoroutineScope()
+fun BottomDrawer(onClick: () -> Unit) {
   BottomAppBar(cutoutShape = CircleShape) {
-    IconButton(onClick = { coroutineScope.launch { modalBottomSheetState.show() } }) {
-      Icon(Icons.Filled.Menu, contentDescription = "Menu Button")
+    IconButton(onClick = onClick) {
+      Icon(Icons.Filled.Menu, contentDescription = stringResource(R.string.menu_button))
     }
   }
 }

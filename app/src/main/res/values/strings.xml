@@ -10,4 +10,6 @@
   <string name="recent_contacts">Recent Contacts</string>
   <string name="title_activity_home">Home</string>
   <string name="blocked_contacts">Blocked Contacts</string>
+  <string name="add_contact">Add Contact</string>
+  <string name="menu_button">Menu Button</string>
 </resources>
