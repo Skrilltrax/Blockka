@@ -1,4 +1,4 @@
-package dev.skrilltrax.blockka.ui.compose
+package dev.skrilltrax.blockka.ui.compose.list.common
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.shape.CircleShape
@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import dev.skrilltrax.blockka.R
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 
-
 @Composable
 fun BlockkaFloatingActionButton(onClick: () -> Unit) {
   val contentDescription = stringResource(R.string.add_contact)
@@ -26,6 +25,7 @@ fun BlockkaFloatingActionButton(onClick: () -> Unit) {
   DrawerFloatingActionButton(icon, contentDescription, onClick)
 }
 
+@VisibleForTesting
 @Composable
 fun DrawerFloatingActionButton(
   icon: ImageVector,
@@ -52,7 +52,7 @@ fun BlockkaBottomDrawer(onClick: () -> Unit) {
   )
 }
 
-@VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
+@VisibleForTesting
 @Composable
 fun BottomDrawer(
   drawerIcon: ImageVector,

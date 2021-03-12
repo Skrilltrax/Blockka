@@ -1,4 +1,4 @@
-package dev.skrilltrax.blockka.ui.compose
+package dev.skrilltrax.blockka.ui.compose.list.blocked
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

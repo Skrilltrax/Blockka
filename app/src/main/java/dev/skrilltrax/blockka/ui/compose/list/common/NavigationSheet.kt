@@ -1,5 +1,6 @@
-package dev.skrilltrax.blockka.ui.compose
+package dev.skrilltrax.blockka.ui.compose.list.common
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.indication
@@ -30,19 +31,20 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.skrilltrax.blockka.ui.compose.list.ListDestination
 import dev.skrilltrax.blockka.ui.compose.theme.BlockkaTheme
 import java.util.Locale
 
 @Composable
-fun NavigationModalSheet(
-  currentDestination: Destination,
+fun BlockkaNavigationSheet(
+  currentListDestination: ListDestination,
   modalBottomSheetState: ModalBottomSheetState,
-  onNavigationItemSelected: (Destination) -> Unit = {},
+  onNavigationItemSelected: (ListDestination) -> Unit = {},
   content: @Composable () -> Unit,
 ) {
 
   ModalBottomSheetLayout(
-    sheetContent = { NavigationSheetContent(currentDestination, onNavigationItemSelected) },
+    sheetContent = { NavigationSheetContent(currentListDestination, onNavigationItemSelected) },
     sheetState = modalBottomSheetState,
     sheetContentColor = MaterialTheme.colors.secondary,
     content = { content() },
@@ -51,14 +53,14 @@ fun NavigationModalSheet(
 
 @Composable
 fun NavigationSheetContent(
-  currentDestination: Destination,
-  onNavigationItemSelected: (Destination) -> Unit,
+  currentListDestination: ListDestination,
+  onNavigationItemSelected: (ListDestination) -> Unit,
 ) {
   Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 24.dp)) {
-    Destination.values().forEach { destination ->
+    ListDestination.values().forEach { destination ->
       NavigationSheetItem(
-        destination = destination,
-        isSelected = destination == currentDestination,
+        listDestination = destination,
+        isSelected = destination == currentListDestination,
         onNavigationItemSelected = onNavigationItemSelected,
       )
       Spacer(modifier = Modifier.height(8.dp))
@@ -68,9 +70,9 @@ fun NavigationSheetContent(
 
 @Composable
 fun NavigationSheetItem(
-  destination: Destination,
+  listDestination: ListDestination,
   isSelected: Boolean,
-  onNavigationItemSelected: (Destination) -> Unit,
+  onNavigationItemSelected: (ListDestination) -> Unit,
 ) {
   val interactionSource = remember { MutableInteractionSource() }
   val pressInteraction = remember { PressInteraction.Press(Offset.Zero) }
@@ -81,22 +83,28 @@ fun NavigationSheetItem(
     interactionSource.tryEmit(PressInteraction.Release(pressInteraction))
   }
 
+  val surfaceColor = Color.Transparent
+  val contentColor = MaterialTheme.colors.secondaryVariant
+
   NavigationSheetItemUI(
-    text = stringResource(id = destination.displayName).toUpperCase(Locale.getDefault()),
-    icon = destination.icon,
+    text = stringResource(id = listDestination.displayName).toUpperCase(Locale.getDefault()),
+    icon = listDestination.icon,
+    surfaceColor = surfaceColor,
+    contentColor = contentColor,
     interactionSource = interactionSource,
-    onClick = { onNavigationItemSelected(destination) }
+    onClick = { onNavigationItemSelected(listDestination) }
   )
 }
 
+@VisibleForTesting
 @Composable
-private fun NavigationSheetItemUI(
+fun NavigationSheetItemUI(
   text: String,
   icon: ImageVector,
-  surfaceColor: Color = Color.Transparent,
-  contentColor: Color = MaterialTheme.colors.secondaryVariant,
-  interactionSource: InteractionSource = MutableInteractionSource(),
-  onClick: () -> Unit = {},
+  surfaceColor: Color,
+  contentColor: Color,
+  interactionSource: InteractionSource,
+  onClick: () -> Unit,
 ) {
   val surfaceIndicatorModifier = Modifier
     .fillMaxWidth()
@@ -138,8 +146,8 @@ private fun NavigationSheetItemUI(
 @Composable
 fun PreviewNavigationSheet() {
   BlockkaTheme {
-    NavigationModalSheet(
-      currentDestination = Destination.startDestination,
+    BlockkaNavigationSheet(
+      currentListDestination = ListDestination.startDestination,
       modalBottomSheetState = ModalBottomSheetState(ModalBottomSheetValue.HalfExpanded),
       onNavigationItemSelected = {},
       content = {},
