@@ -21,6 +21,7 @@ android {
 
 dependencies {
 
+  implementation(Dependencies.AndroidX.activityCompose)
   implementation(Dependencies.AndroidX.activityKtx)
   implementation(Dependencies.AndroidX.appCompat)
   implementation(Dependencies.AndroidX.coreKtx)
@@ -29,19 +30,28 @@ dependencies {
   implementation(Dependencies.AndroidX.recyclerviewSelection)
 
   implementation(Dependencies.AndroidX.Compose.compiler)
+  implementation(Dependencies.AndroidX.Compose.material)
+  implementation(Dependencies.AndroidX.Compose.materialIconsCore)
+  implementation(Dependencies.AndroidX.Compose.materialIconsExtended)
   implementation(Dependencies.AndroidX.Compose.runtime)
+  implementation(Dependencies.AndroidX.Compose.ui)
+  implementation(Dependencies.AndroidX.Compose.uiTooling)
 
   implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
   implementation(Dependencies.AndroidX.Lifecycle.process)
   implementation(Dependencies.AndroidX.Lifecycle.runtimeKtx)
-  implementation(Dependencies.AndroidX.Lifecycle.viewmodelKtx)
+  implementation(Dependencies.AndroidX.Lifecycle.viewModelCompose)
+  implementation(Dependencies.AndroidX.Lifecycle.viewModelKtx)
 
+  implementation(Dependencies.AndroidX.Navigation.compose)
   implementation(Dependencies.AndroidX.Navigation.fragmentKtx)
   implementation(Dependencies.AndroidX.Navigation.uiKtx)
 
   implementation(Dependencies.AndroidX.Hilt.dagger)
-  implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewmodel)
+  implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewModel)
+  implementation(Dependencies.AndroidX.Hilt.hiltNavigation)
 
+  implementation(Dependencies.ThirdParty.accompanist)
   implementation(Dependencies.ThirdParty.coil)
   implementation(Dependencies.ThirdParty.timber)
   implementation(Dependencies.ThirdParty.SQLDelight.androidDriver)

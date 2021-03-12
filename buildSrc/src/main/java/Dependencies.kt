@@ -33,6 +33,7 @@ object Dependencies {
   object AndroidX {
 
     const val activityKtx = "androidx.activity:activity-ktx:1.3.0-alpha03"
+    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha02"
     const val appCompat = "androidx.appcompat:appcompat:1.3.0-beta01"
     const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
@@ -45,19 +46,21 @@ object Dependencies {
       const val foundation = "androidx.compose.foundation:foundation:$COMPOSE_VERSION"
       const val foundationLayout = "androidx.compose.foundation:foundation-layout:$COMPOSE_VERSION"
       const val material = "androidx.compose.material:material:$COMPOSE_VERSION"
-      const val navigation = "androidx.navigation:navigation-compose:1.0.0-alpha02"
+      const val materialIconsCore = "androidx.compose.material:material-icons-core:$COMPOSE_VERSION"
+      const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$COMPOSE_VERSION"
       const val runtime = "androidx.compose.runtime:runtime:$COMPOSE_VERSION"
       const val ui = "androidx.compose.ui:ui:$COMPOSE_VERSION"
       const val uiUnit = "androidx.compose.ui:ui-unit:$COMPOSE_VERSION"
-      const val uiTooling = "androidx.ui:ui-tooling:$COMPOSE_VERSION"
+      const val uiTooling = "androidx.compose.ui:ui-tooling:$COMPOSE_VERSION"
     }
 
     object Hilt {
       const val dagger = "com.google.dagger:hilt-android:$DAGGER_HILT_VERSION"
       const val daggerCompiler = "com.google.dagger:hilt-compiler:$DAGGER_HILT_VERSION"
       const val daggerHiltCompiler = "androidx.hilt:hilt-compiler:$ANDROIDX_HILT_VERSION"
-      const val hiltLifecycleViewmodel =
+      const val hiltLifecycleViewModel =
         "androidx.hilt:hilt-lifecycle-viewmodel:$ANDROIDX_HILT_VERSION"
+      const val hiltNavigation = "androidx.hilt:hilt-navigation:$ANDROIDX_HILT_VERSION"
     }
 
     object Lifecycle {
@@ -66,7 +69,8 @@ object Dependencies {
       const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
       const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
       const val process = "androidx.lifecycle:lifecycle-process:$version"
-      const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+      const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+      const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha02"
     }
 
     object Navigation {
@@ -74,12 +78,13 @@ object Dependencies {
       private const val version = "2.3.3"
       const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
       const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+      const val compose = "androidx.navigation:navigation-compose:1.0.0-alpha08"
     }
   }
 
   object ThirdParty {
 
-    const val accompanist = "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
+    const val accompanist = "dev.chrisbanes.accompanist:accompanist-coil:0.5.1"
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val coil = "io.coil-kt:coil:1.1.1"
 

@@ -16,7 +16,11 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.Blockka">
-    <activity android:name=".ui.MainActivity">
+
+    <activity
+      android:name=".ui.compose.HomeActivity"
+      android:label="@string/title_activity_home"
+      android:theme="@style/Theme.Blockka.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -24,21 +28,23 @@
       </intent-filter>
     </activity>
 
-    <receiver android:name=".data.listener.IncomingCallReceiver">
+<!--
+    <activity android:name=".ui.MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+-->
+
+    <receiver
+      android:name=".data.listener.IncomingCallReceiver"
+      android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.PHONE_STATE" />
       </intent-filter>
     </receiver>
-
-    <!-- TODO: Use call screening service for API 29+
-    <service android:name=".data.service.BlockkaCallScreeningService"
-        android:permission="android.permission.BIND_SCREENING_SERVICE">
-        <intent-filter>
-            <action android:name="android.telecom.CallScreeningService"/>
-        </intent-filter>
-    </service>
-    -->
-
   </application>
 
 </manifest>
