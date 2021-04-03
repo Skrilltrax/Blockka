@@ -33,7 +33,7 @@ object Dependencies {
   object AndroidX {
 
     const val activityKtx = "androidx.activity:activity-ktx:1.3.0-alpha05"
-    const val appCompat = "androidx.appcompat:appcompat:1.3.0-rc"
+    const val appCompat = "androidx.appcompat:appcompat:1.3.0-rc01"
     const val coreKtx = "androidx.core:core-ktx:1.6.0-alpha01"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.2"
     const val material = "com.google.android.material:material:1.4.0-alpha02"
