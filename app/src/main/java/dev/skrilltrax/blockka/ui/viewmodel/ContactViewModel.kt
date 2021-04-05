@@ -1,18 +1,20 @@
 package dev.skrilltrax.blockka.ui.viewmodel
 
 import android.telephony.PhoneNumberUtils
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.skrilltrax.blockka.data.local.LocalContact
 import dev.skrilltrax.blockka.data.repo.ContactRepository
 import dev.skrilltrax.blockka.data.repo.RecentRepository
 import dev.skrilltrax.sqldelight.Contact
 import dev.skrilltrax.sqldelight.RecentContact
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class ContactViewModel @ViewModelInject constructor(
+@HiltViewModel
+class ContactViewModel @Inject constructor(
   private val contactRepository: ContactRepository,
   private val recentRepository: RecentRepository
 ) : ViewModel() {

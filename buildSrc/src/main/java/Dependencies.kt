@@ -1,7 +1,7 @@
 private const val AGP_VERSION = "7.0.0-alpha12"
 private const val ANDROIDX_HILT_VERSION = "1.0.0-beta01"
 private const val DAGGER_HILT_VERSION = "2.33-beta"
-private const val KOTLIN_VERSION = "1.5.0-M2"
+private const val KOTLIN_VERSION = "1.4.31"
 private const val SQLDELIGHT_VERSION = "1.4.4"
 private const val LINT_VERSION = "27.3.0-alpha04"
 
