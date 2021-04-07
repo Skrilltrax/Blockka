@@ -40,7 +40,6 @@ dependencies {
   implementation(Dependencies.AndroidX.Navigation.uiKtx)
 
   implementation(Dependencies.AndroidX.Hilt.dagger)
-  implementation(Dependencies.AndroidX.Hilt.hiltLifecycleViewmodel)
 
   implementation(Dependencies.ThirdParty.coil)
   implementation(Dependencies.ThirdParty.timber)
