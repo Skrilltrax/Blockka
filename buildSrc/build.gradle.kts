@@ -5,13 +5,7 @@ plugins {
 repositories {
   google()
   gradlePluginPortal()
-  jcenter()
   mavenCentral()
-
-}
-
-kotlinDslPluginOptions {
-  experimentalWarning.set(false)
 }
 
 gradlePlugin {
@@ -24,11 +18,8 @@ gradlePlugin {
 }
 
 dependencies {
-  implementation(Plugins.agp)
-  implementation(Plugins.agpBuilder)
-  implementation(Plugins.agpBuilderModel)
-  implementation(Plugins.agpLintModel)
-  implementation(Plugins.hilt)
-  implementation(Plugins.kotlin)
-  implementation(Plugins.sqlDelight)
+  implementation("com.android.tools.build:gradle:7.0.0-alpha14")
+  implementation("com.google.dagger:hilt-android-gradle-plugin:2.35")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
+  implementation("com.squareup.sqldelight:gradle-plugin:1.5.0")
 }
