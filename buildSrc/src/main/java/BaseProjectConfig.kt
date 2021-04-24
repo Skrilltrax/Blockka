@@ -34,7 +34,7 @@ internal fun Project.configureForRootProject() {
 internal fun Project.configureForAllProjects() {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
     maven { setUrl("https://jitpack.io") }
   }
   tasks.withType<KotlinCompile> {

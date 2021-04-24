@@ -14,44 +14,40 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion = Dependencies.COMPOSE_VERSION
+    kotlinCompilerExtensionVersion = libs.versions.compose.get()
   }
 }
 
 
 dependencies {
 
-  implementation(Dependencies.AndroidX.activityKtx)
-  implementation(Dependencies.AndroidX.appCompat)
-  implementation(Dependencies.AndroidX.coreKtx)
-  implementation(Dependencies.AndroidX.fragmentKtx)
-  implementation(Dependencies.AndroidX.material)
-  implementation(Dependencies.AndroidX.recyclerviewSelection)
+  implementation(libs.androidx.activityKtx)
+  implementation(libs.androidx.appcompat)
+  implementation(libs.androidx.coreKtx)
+  implementation(libs.androidx.fragmentKtx)
+  implementation(libs.androidx.material)
+  implementation(libs.androidx.recyclerviewSelection)
 
-  implementation(Dependencies.AndroidX.Compose.compiler)
-  implementation(Dependencies.AndroidX.Compose.runtime)
+  implementation(libs.androidx.compose.compiler)
+  implementation(libs.androidx.compose.runtime)
+  implementation(libs.androidx.lifecycle.common)
+  implementation(libs.androidx.lifecycle.runtimeKtx)
+  implementation(libs.androidx.lifecycle.viewmodelKtx)
 
-  implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
-  implementation(Dependencies.AndroidX.Lifecycle.process)
-  implementation(Dependencies.AndroidX.Lifecycle.runtimeKtx)
-  implementation(Dependencies.AndroidX.Lifecycle.viewmodelKtx)
+  implementation(libs.androidx.navigation.fragmentKtx)
+  implementation(libs.androidx.navigation.uiKtx)
 
-  implementation(Dependencies.AndroidX.Navigation.fragmentKtx)
-  implementation(Dependencies.AndroidX.Navigation.uiKtx)
+  implementation(libs.androidx.hilt.dagger)
 
-  implementation(Dependencies.AndroidX.Hilt.dagger)
+  implementation(libs.thirdparty.coil)
+  implementation(libs.thirdparty.timber)
+  implementation(libs.thirdparty.sqldelight.androidDriver)
+  implementation(libs.thirdparty.sqldelight.coroutinesExtension)
 
-  implementation(Dependencies.ThirdParty.coil)
-  implementation(Dependencies.ThirdParty.timber)
-  implementation(Dependencies.ThirdParty.SQLDelight.androidDriver)
-  implementation(Dependencies.ThirdParty.SQLDelight.coroutinesExtension)
+  testImplementation(libs.testing.junit)
+  testImplementation(libs.thirdparty.sqldelight.jvmDriver)
 
-  testImplementation(Dependencies.Testing.junit)
-  testImplementation(Dependencies.Testing.AndroidX.runner)
-  testImplementation(Dependencies.ThirdParty.SQLDelight.jvmDriver)
+  androidTestImplementation(libs.bundles.androidTestDependencies)
 
-  androidTestImplementation(Dependencies.Testing.AndroidX.Ext.junit)
-
-  kapt(Dependencies.AndroidX.Hilt.daggerCompiler)
-  kapt(Dependencies.AndroidX.Hilt.daggerHiltCompiler)
+  kapt(libs.androidx.hilt.daggerCompiler)
 }
