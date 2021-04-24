@@ -6,11 +6,11 @@ compose = "1.0.0-beta05"
 coroutines = "1.4.3"
 dagger_hilt = "2.35"
 jb_compose = "0.4.0-build184"
-kotlin = "1.4.32"
+kotlin = "1.5.0-RC"
 ksp = "1.4.32-1.0.0-alpha08"
 lifecycle = "2.4.0-alpha01"
 moshix = "0.10.0"
-navigation = "2.3.4"
+navigation = "2.3.5"
 retrofit = "2.9.0"
 sqldelight = "1.5.0"
 
@@ -74,7 +74,7 @@ thirdparty-sqldelight-jvmDriver = { module = "com.squareup.sqldelight:sqlite-dri
 
 # Third-party dependencies
 thirdparty-accompanist-coil = { module = "com.google.accompanist:accompanist-coil", version.ref = "accompanist" }
-thirdparty-coil = "io.coil-kt:coil:1.1.1"
+thirdparty-coil = "io.coil-kt:coil:1.2.0"
 thirdparty-kotlinResult = "com.michael-bull.kotlin-result:kotlin-result:1.1.11"
 thirdparty-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.7"
 thirdparty-timber = "com.jakewharton.timber:timber:4.7.1"
