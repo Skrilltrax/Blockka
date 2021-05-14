@@ -41,7 +41,7 @@ androidx-lifecycle_common = { module = "androidx.lifecycle:lifecycle-common-java
 androidx-lifecycle_livedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle_runtimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle_viewmodelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-androidx-material = "com.google.android.material:material:1.4.0-alpha02"
+androidx-material = "com.google.android.material:material:1.4.0-beta01"
 androidx-recyclerview = "androidx.recyclerview:recyclerview:1.2.0"
 androidx-recyclerviewSelection = "androidx.recyclerview:recyclerview-selection:1.2.0-alpha01"
 
