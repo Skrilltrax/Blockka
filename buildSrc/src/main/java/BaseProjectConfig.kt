@@ -21,9 +21,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 internal fun Project.configureForRootProject() {
   // register task for cleaning the build directory in the root project
   tasks.withType<Wrapper> {
-    gradleVersion = "7.0"
+    gradleVersion = "7.0.2"
     distributionType = Wrapper.DistributionType.ALL
-    distributionSha256Sum = "81003f83b0056d20eedf48cddd4f52a9813163d4ba185bcf8abd34b8eeea4cbd"
+    distributionSha256Sum = "13bf8d3cf8eeeb5770d19741a59bde9bd966dd78d17f1bbad787a05ef19d1c2d"
   }
 
 }
