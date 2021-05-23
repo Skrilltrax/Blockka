@@ -16,8 +16,15 @@ android {
   composeOptions {
     kotlinCompilerExtensionVersion = libs.versions.compose.get()
   }
-}
 
+  lintOptions {
+    isAbortOnError = true
+    isCheckReleaseBuilds = false
+
+    // https://issuetracker.google.com/issues/187524311
+    disable("DialogFragmentCallbacksDetector")
+  }
+}
 
 dependencies {
 
