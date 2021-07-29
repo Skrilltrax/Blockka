@@ -84,7 +84,7 @@ internal fun BaseAppModuleExtension.configureAndroidApplicationOptions(project: 
   buildFeatures {
     aidl = true
     buildConfig = true
-    compose = true
+    compose = false
     viewBinding = true
   }
 
