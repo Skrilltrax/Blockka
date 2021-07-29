@@ -10,19 +10,6 @@ plugins {
 android {
   defaultConfig {
     applicationId = "dev.skrilltrax.blockka"
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.compose.get()
-  }
-
-  lintOptions {
-    isAbortOnError = true
-    isCheckReleaseBuilds = false
-
-    // https://issuetracker.google.com/issues/187524311
-    disable("DialogFragmentCallbacksDetector")
   }
 }
 
@@ -35,8 +22,6 @@ dependencies {
   implementation(libs.androidx.material)
   implementation(libs.androidx.recyclerviewSelection)
 
-  implementation(libs.androidx.compose.compiler)
-  implementation(libs.androidx.compose.runtime)
   implementation(libs.androidx.lifecycle.common)
   implementation(libs.androidx.lifecycle.runtimeKtx)
   implementation(libs.androidx.lifecycle.viewmodelKtx)
